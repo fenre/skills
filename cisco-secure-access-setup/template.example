@@ -1,0 +1,50 @@
+# Cisco Secure Access intake template
+#
+# Copy to `template.local` and fill in non-secret values only.
+# Keep the completed file local.
+#
+# Create temp secret files only when you are ready to run the scripts:
+# printf '%s\n' '<api_key>' > /tmp/secure_access_api_key && chmod 600 /tmp/secure_access_api_key
+# printf '%s\n' '<api_secret>' > /tmp/secure_access_api_secret && chmod 600 /tmp/secure_access_api_secret
+# printf '%s\n' '<cloudlock_token>' > /tmp/secure_access_cloudlock_token && chmod 600 /tmp/secure_access_cloudlock_token
+#
+# Then pass:
+#   --api-key-file /tmp/secure_access_api_key
+#   --api-secret-file /tmp/secure_access_api_secret
+#   --cloudlock-token-file /tmp/secure_access_cloudlock_token
+#
+# Leave `ORG_ID` blank if you plan to discover it first with
+# `configure_account.sh --discover-org-id`.
+
+APP_NAME=cisco-cloud-security
+APP_ID=5558
+
+# Required org account fields
+ORG_ID=
+BASE_URL=https://api.us.security.cisco.com
+TIMEZONE=UTC
+STORAGE_REGION=
+
+# Optional indexes created or updated during account setup
+INVESTIGATE_INDEX=
+PRIVATEAPP_INDEX=
+APPDISCOVERY_INDEX=
+
+# Optional dashboard/app settings
+SEARCH_INTERVAL=12
+REFRESH_RATE=0
+
+# Optional Cloudlock settings
+# Set all four values below only if you are enabling Cloudlock.
+CLOUDLOCK_NAME=
+CLOUDLOCK_URL=
+CLOUDLOCK_START_DATE=
+CLOUDLOCK_SHOW_INCIDENT_DETAILS=false
+CLOUDLOCK_SHOW_UEBA=false
+
+# Optional S3-backed dashboard indexes
+DNS_INDEX=
+PROXY_INDEX=
+FIREWALL_INDEX=
+DLP_INDEX=
+RAVPN_INDEX=

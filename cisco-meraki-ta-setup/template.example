@@ -1,0 +1,36 @@
+# Cisco Meraki account intake template
+#
+# Copy this file to `template.local` in the same folder before entering real
+# values. Keep the completed file local only.
+#
+# Fill in non-secret values only. Do not store API keys, OAuth client secrets,
+# or tokens in `template.local`.
+#
+# The current first-party automation path uses the Dashboard API key workflow.
+# The add-on has additional OAuth fields internally, but
+# `scripts/configure_account.sh` does not currently prompt for them, so they are
+# intentionally omitted from this worksheet.
+#
+# Create the API key temp file only when you are ready to run the configure script:
+# printf '%s\n' '<meraki_dashboard_api_key>' > /tmp/meraki_api_key && chmod 600 /tmp/meraki_api_key
+#
+# Then pass:
+#   --api-key-file /tmp/meraki_api_key
+#
+# Duplicate the section when you need more than one organization account.
+#
+# `stanza_name` is the account name that will appear in Splunk.
+# `region` controls the base URL automatically:
+# - global: https://api.meraki.com
+# - india: https://api.meraki.in
+# - canada: https://api.meraki.ca
+# - china: https://api.meraki.cn
+# - fedramp: https://api.gov-meraki.com
+
+[organization_account]
+stanza_name = MERAKI_PROD
+organization_id =
+region = global
+max_api_calls_per_second = 5
+automatic_input_creation = 1
+automatic_input_creation_index = meraki

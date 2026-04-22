@@ -1,0 +1,593 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../../shared/lib/credential_helpers.sh"
+
+APP_NAME="ta_cisco_thousandeyes"
+HEC_TOKEN_NAME="thousandeyes"
+DEFAULT_INDEXES=(thousandeyes_metrics thousandeyes_traces thousandeyes_events thousandeyes_activity thousandeyes_alerts thousandeyes_pathvis)
+
+INDEXES_ONLY=false
+HEC_ONLY=false
+ENABLE_INPUTS=false
+ACCOUNT=""
+ACCOUNT_GROUP=""
+INDEX=""
+INPUT_TYPE=""
+HEC_TOKEN=""
+HEC_URL=""
+PATHVIS_ENABLED=true
+PATHVIS_INDEX="thousandeyes_pathvis"
+PATHVIS_INTERVAL="3600"
+SK=""
+INGEST_SK=""
+
+usage() {
+    cat >&2 <<EOF
+Cisco ThousandEyes App Setup Automation
+
+Usage: $(basename "$0") [OPTIONS]
+
+Options:
+  --indexes-only          Create indexes only
+  --hec-only              Verify/create HEC token only
+  --enable-inputs         Enable data inputs
+  --account EMAIL         ThousandEyes user account (email)
+  --account-group NAME    ThousandEyes account group name
+  --index INDEX           Target index for polling inputs
+  --input-type TYPE       Input group: all, metrics, traces, events, activity, alerts
+  --hec-token NAME        HEC token name (default: thousandeyes)
+  --hec-url URL           HEC URL override; may include /services/collector/event
+  --pathvis-index INDEX   Path visualization index (default: thousandeyes_pathvis)
+  --pathvis-interval SEC  Path visualization poll interval (default: 3600)
+  --no-pathvis            Disable path visualization on metrics inputs
+  --help                  Show this help
+
+With no flags, runs full setup (HEC + indexes).
+EOF
+    exit "${1:-0}"
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --indexes-only) INDEXES_ONLY=true; shift ;;
+        --hec-only) HEC_ONLY=true; shift ;;
+        --enable-inputs) ENABLE_INPUTS=true; shift ;;
+        --account) require_arg "$1" $# || exit 1; ACCOUNT="$2"; shift 2 ;;
+        --account-group) require_arg "$1" $# || exit 1; ACCOUNT_GROUP="$2"; shift 2 ;;
+        --index) require_arg "$1" $# || exit 1; INDEX="$2"; shift 2 ;;
+        --input-type) require_arg "$1" $# || exit 1; INPUT_TYPE="$2"; shift 2 ;;
+        --hec-token) require_arg "$1" $# || exit 1; HEC_TOKEN="$2"; shift 2 ;;
+        --hec-url) require_arg "$1" $# || exit 1; HEC_URL="$2"; shift 2 ;;
+        --pathvis-index) require_arg "$1" $# || exit 1; PATHVIS_INDEX="$2"; shift 2 ;;
+        --pathvis-interval) require_arg "$1" $# || exit 1; PATHVIS_INTERVAL="$2"; shift 2 ;;
+        --no-pathvis) PATHVIS_ENABLED=false; shift ;;
+        --help) usage ;;
+        *) echo "Unknown option: $1" >&2; usage 1 ;;
+    esac
+done
+
+HEC_TOKEN="${HEC_TOKEN:-${HEC_TOKEN_NAME}}"
+
+log_live_input_summary() {
+    local total enabled disabled
+    read -r total enabled disabled <<< "$(rest_get_live_input_counts "${SK}" "${SPLUNK_URI}" "${APP_NAME}")"
+    log "Live input status: total=${total}, enabled=${enabled}, disabled=${disabled}"
+}
+
+ensure_search_api_session() {
+    load_splunk_credentials || { log "ERROR: Splunk credentials are required."; exit 1; }
+    SK=$(get_session_key "${SPLUNK_URI}") || { log "ERROR: Could not authenticate to Splunk. Check credentials."; exit 1; }
+}
+
+ensure_ingest_api_session() {
+    local saved_user saved_pass
+
+    load_splunk_credentials || { log "ERROR: Splunk credentials are required."; exit 1; }
+    load_ingest_connection_settings
+
+    saved_user="${SPLUNK_USER:-}"
+    saved_pass="${SPLUNK_PASS:-}"
+    SPLUNK_USER="${INGEST_SPLUNK_USER:-${SPLUNK_USER:-}}"
+    SPLUNK_PASS="${INGEST_SPLUNK_PASS:-${SPLUNK_PASS:-}}"
+    INGEST_SK="$(get_session_key "${INGEST_SPLUNK_URI}")" || {
+        SPLUNK_USER="${saved_user}"
+        SPLUNK_PASS="${saved_pass}"
+        log "ERROR: Could not authenticate to the ingest-tier Splunk REST API. Check ingest credentials."
+        exit 1
+    }
+    SPLUNK_USER="${saved_user}"
+    SPLUNK_PASS="${saved_pass}"
+}
+
+check_prereqs() {
+    ensure_search_api_session
+    if ! rest_check_app "${SK}" "${SPLUNK_URI}" "${APP_NAME}"; then
+        log "ERROR: ThousandEyes app not found. Install the app first."
+        exit 1
+    fi
+}
+
+normalize_hec_base_url() {
+    local url="${1%/}"
+    url="${url%/services/collector/event}"
+    url="${url%/services/collector/raw}"
+    printf '%s' "${url}"
+}
+
+detect_hec_target() {
+    local host ingest_role
+
+    if [[ -n "${HEC_URL}" ]]; then
+        normalize_hec_base_url "${HEC_URL}"
+        return 0
+    fi
+
+    load_ingest_connection_settings
+    if is_splunk_cloud; then
+        local stack="${SPLUNK_CLOUD_STACK:-}"
+        if [[ -n "${stack}" ]]; then
+            if _is_staging_splunk_cloud_host "${SPLUNK_URI:-}"; then
+                printf 'https://http-inputs-%s.stg.splunkcloud.com:443' "${stack}"
+            else
+                printf 'https://http-inputs-%s.splunkcloud.com:443' "${stack}"
+            fi
+            return 0
+        fi
+        log "WARNING: Cloud platform detected but SPLUNK_CLOUD_STACK is empty." >&2
+        log "  HEC target will fall back to search-head host on port 8088," >&2
+        log "  which is incorrect for Splunk Cloud. Set SPLUNK_CLOUD_STACK" >&2
+        log "  in your credentials file." >&2
+    fi
+
+    if [[ -n "${INGEST_SPLUNK_HEC_URL:-}" ]]; then
+        normalize_hec_base_url "${INGEST_SPLUNK_HEC_URL}"
+        return 0
+    fi
+
+    ingest_role="$(resolve_ingest_target_role 2>/dev/null || true)"
+    if [[ "${ingest_role}" == "indexer" ]] && deployment_index_bundle_profile >/dev/null 2>&1; then
+        log "ERROR: Clustered indexer-tier ingest requires an explicit HEC URL."
+        log "ERROR: Set --hec-url or configure SPLUNK_HEC_URL on the ingest profile."
+        exit 1
+    fi
+
+    host=$(splunk_host_from_uri "${INGEST_SPLUNK_URI}")
+    if [[ -z "${host}" ]]; then
+        host="${INGEST_SPLUNK_HOST:-}"
+    fi
+    if [[ -z "${host}" ]]; then
+        log "ERROR: Could not determine the Enterprise ingest HEC host. Pass --hec-url or configure SPLUNK_INGEST_PROFILE."
+        exit 1
+    fi
+    printf 'https://%s:8088' "${host}"
+}
+
+enterprise_hec_uses_bundle() {
+    if is_splunk_cloud; then
+        return 1
+    fi
+    type deployment_should_manage_ingest_hec_via_bundle >/dev/null 2>&1 \
+        && deployment_should_manage_ingest_hec_via_bundle
+}
+
+enterprise_hec_token_state() {
+    local token_name="$1"
+
+    if enterprise_hec_uses_bundle; then
+        deployment_get_bundle_hec_token_state "${token_name}" 2>/dev/null || echo "unknown"
+        return 0
+    fi
+
+    ensure_ingest_api_session
+    rest_get_hec_token_state "${INGEST_SK}" "${INGEST_SPLUNK_URI}" "${token_name}" 2>/dev/null || echo "unknown"
+}
+
+_ACS_HEC_CMD_GROUP=""
+acs_hec_command_group() {
+    if [[ -n "${_ACS_HEC_CMD_GROUP}" ]]; then
+        printf '%s' "${_ACS_HEC_CMD_GROUP}"
+        return 0
+    fi
+    if acs_command hec-token list --count 1 >/dev/null 2>&1; then
+        _ACS_HEC_CMD_GROUP="hec-token"
+    else
+        _ACS_HEC_CMD_GROUP="http-event-collectors"
+    fi
+    printf '%s' "${_ACS_HEC_CMD_GROUP}"
+}
+
+cloud_get_hec_token_state() {
+    local token_name="$1" cmd_group hec_list
+    cmd_group="$(acs_hec_command_group)"
+
+    if [[ "${cmd_group}" == "hec-token" ]]; then
+        hec_list=$(acs_command hec-token list --count 100 2>/dev/null | acs_extract_http_response_json || echo "{}")
+    else
+        hec_list=$(acs_command http-event-collectors list 2>/dev/null | acs_extract_http_response_json || echo "{}")
+    fi
+
+    printf '%s' "${hec_list}" | python3 -c "
+import json, sys
+target = sys.argv[1]
+try:
+    data = json.load(sys.stdin)
+    collectors = (
+        data.get('http-event-collectors')
+        or data.get('http_event_collectors')
+        or data.get('tokens')
+        or []
+    )
+    for collector in collectors:
+        spec = collector.get('spec', {}) if isinstance(collector, dict) else {}
+        name = spec.get('name') or collector.get('name', '')
+        if name != target:
+            continue
+        disabled = str(spec.get('disabled', collector.get('disabled', False))).strip().lower()
+        if disabled in ('1', 'true'):
+            print('disabled', end='')
+        else:
+            print('enabled', end='')
+        raise SystemExit(0)
+    print('missing', end='')
+except Exception:
+    print('unknown', end='')
+" "${token_name}" 2>/dev/null || echo "unknown"
+}
+
+cloud_create_hec_token_via_acs() {
+    local token_name="$1" cmd_group indexes_csv
+    cmd_group="$(acs_hec_command_group)"
+
+    if [[ "${cmd_group}" == "hec-token" ]]; then
+        local -a create_cmd=(hec-token create --name "${token_name}" --default-index "thousandeyes_metrics")
+        local idx
+        for idx in "${DEFAULT_INDEXES[@]}"; do
+            create_cmd+=(--allowed-indexes "${idx}")
+        done
+        acs_command "${create_cmd[@]}" >/dev/null 2>&1
+    else
+        indexes_csv=$(IFS=,; echo "${DEFAULT_INDEXES[*]}")
+        acs_command http-event-collectors create \
+            --name "${token_name}" \
+            --allowed-indexes "${indexes_csv}" \
+            --default-index "thousandeyes_metrics" \
+            --disabled false \
+            >/dev/null 2>&1
+    fi
+}
+
+rest_create_hec_token() {
+    local token_name="$1" indexes_str body resp hec_code
+    indexes_str=$(IFS=,; echo "${DEFAULT_INDEXES[*]}")
+    body=$(form_urlencode_pairs \
+        name "${token_name}" \
+        index "thousandeyes_metrics" \
+        indexes "${indexes_str}" \
+        disabled "false") || return 1
+    resp=$(splunk_curl_post "${INGEST_SK}" "${body}" \
+        "${INGEST_SPLUNK_URI}/services/data/inputs/http?output_mode=json" \
+        -w '\n%{http_code}' 2>/dev/null)
+    hec_code=$(echo "${resp}" | tail -1)
+    case "${hec_code}" in
+        201|200|409) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+ensure_hec_token() {
+    local token_name="${1:-${HEC_TOKEN}}" state indexes_csv
+    log "Checking HEC token '${token_name}'..."
+
+    if is_splunk_cloud; then
+        acs_prepare_context || { log "ERROR: ACS context required for Cloud HEC management."; exit 1; }
+        state="$(cloud_get_hec_token_state "${token_name}" 2>/dev/null || echo "unknown")"
+        case "${state}" in
+            enabled|disabled)
+                log "  HEC token '${token_name}' already exists in Splunk Cloud."
+                return 0
+                ;;
+        esac
+
+        log "  Creating HEC token '${token_name}' via ACS..."
+        if cloud_create_hec_token_via_acs "${token_name}"; then
+            state="$(cloud_get_hec_token_state "${token_name}" 2>/dev/null || echo "unknown")"
+            case "${state}" in
+                enabled|disabled)
+                    log "  HEC token '${token_name}' created via ACS."
+                    return 0
+                    ;;
+            esac
+        fi
+
+        log "  ACS HEC token management could not confirm '${token_name}'. Trying search-tier REST..."
+        ensure_search_api_session
+        state="$(rest_get_hec_token_state "${SK}" "${SPLUNK_URI}" "${token_name}" 2>/dev/null || echo "unknown")"
+        case "${state}" in
+            enabled|disabled)
+                log "  HEC token '${token_name}' already exists."
+                return 0
+                ;;
+        esac
+
+        log "  Creating HEC token '${token_name}' via REST..."
+        if rest_create_hec_token "${token_name}"; then
+            state="$(rest_get_hec_token_state "${SK}" "${SPLUNK_URI}" "${token_name}" 2>/dev/null || echo "unknown")"
+            case "${state}" in
+                enabled|disabled)
+                    log "  HEC token '${token_name}' created via REST."
+                    return 0
+                    ;;
+            esac
+        fi
+
+        log "ERROR: Failed to verify or create HEC token '${token_name}'."
+        exit 1
+    else
+        state="$(enterprise_hec_token_state "${token_name}" 2>/dev/null || echo "unknown")"
+        if [[ "${state}" == "enabled" || "${state}" == "disabled" ]]; then
+            log "  HEC token '${token_name}' already exists."
+            return 0
+        fi
+
+        indexes_csv="$(IFS=,; echo "${DEFAULT_INDEXES[*]}")"
+        if enterprise_hec_uses_bundle; then
+            log "  Creating HEC token '${token_name}' via cluster-manager bundle..."
+            if deployment_create_cluster_bundle_hec_token "${token_name}" "thousandeyes_metrics" "${indexes_csv}" "0"; then
+                state="$(enterprise_hec_token_state "${token_name}" 2>/dev/null || echo "unknown")"
+                if [[ "${state}" == "enabled" || "${state}" == "disabled" ]]; then
+                    log "  HEC token '${token_name}' created via cluster-manager bundle."
+                    return 0
+                fi
+            fi
+        else
+            ensure_ingest_api_session
+            log "  Creating HEC token '${token_name}' via REST..."
+            if rest_create_hec_token "${token_name}"; then
+                state="$(enterprise_hec_token_state "${token_name}" 2>/dev/null || echo "unknown")"
+                if [[ "${state}" == "enabled" || "${state}" == "disabled" ]]; then
+                    log "  HEC token '${token_name}' created via REST."
+                    return 0
+                fi
+            fi
+        fi
+
+        log "ERROR: Failed to create HEC token '${token_name}'."
+        exit 1
+    fi
+}
+
+create_indexes() {
+    log "Creating indexes..."
+    if ! is_splunk_cloud; then
+        ensure_search_api_session
+    fi
+    for idx in "${DEFAULT_INDEXES[@]}"; do
+        if platform_create_index "${SK-}" "${SPLUNK_URI}" "${idx}" "512000"; then
+            log "  Index '${idx}' created or already exists."
+        else
+            log "ERROR: Failed to create index '${idx}'"
+            return 1
+        fi
+    done
+    log "Index creation complete."
+}
+
+enable_metrics_inputs() {
+    local account="$1" acc_group="$2" hec_token="$3"
+    local hec_target
+    local body
+    hec_target=$(detect_hec_target)
+
+    log "Enabling metrics stream input for account='${account}'..."
+    log "  HEC target: ${hec_target}"
+    body=$(form_urlencode_pairs \
+        disabled "0" \
+        thousandeyes_user "${account}" \
+        thousandeyes_acc_group "${acc_group}" \
+        hec_target "${hec_target}" \
+        hec_token "${hec_token}" \
+        test_index "thousandeyes_metrics")
+    if ${PATHVIS_ENABLED}; then
+        body="${body}&$(form_urlencode_pairs \
+            related_paths "1" \
+            index "${PATHVIS_INDEX}" \
+            interval "${PATHVIS_INTERVAL}")"
+        log "  Path visualization enabled (index=${PATHVIS_INDEX}, interval=${PATHVIS_INTERVAL}s)."
+    fi
+    rest_create_input "${SK}" "${SPLUNK_URI}" "${APP_NAME}" \
+        "test_metrics_stream" "metrics_${account}" "${body}"
+    log "  Metrics stream input enabled."
+}
+
+enable_traces_inputs() {
+    local account="$1" acc_group="$2" hec_token="$3"
+    local hec_target
+    hec_target=$(detect_hec_target)
+
+    log "Enabling traces stream input for account='${account}'..."
+    local body
+    body=$(form_urlencode_pairs \
+        disabled "0" \
+        thousandeyes_user "${account}" \
+        thousandeyes_acc_group "${acc_group}" \
+        hec_target "${hec_target}" \
+        hec_token "${hec_token}" \
+        test_index "thousandeyes_traces")
+    rest_create_input "${SK}" "${SPLUNK_URI}" "${APP_NAME}" \
+        "test_traces_stream" "traces_${account}" "${body}"
+    log "  Traces stream input enabled."
+}
+
+enable_events_inputs() {
+    local account="$1" acc_group="$2"
+    local idx="${INDEX:-thousandeyes_events}"
+
+    log "Enabling events polling input for account='${account}'..."
+    local body
+    body=$(form_urlencode_pairs \
+        disabled "0" \
+        thousandeyes_user "${account}" \
+        thousandeyes_acc_group "${acc_group}" \
+        index "${idx}" \
+        interval "3600")
+    rest_create_input "${SK}" "${SPLUNK_URI}" "${APP_NAME}" \
+        "event" "events_${account}" "${body}"
+    log "  Events polling input enabled (interval: 3600s)."
+}
+
+enable_activity_inputs() {
+    local account="$1" acc_group="$2" hec_token="$3"
+    local hec_target
+    hec_target=$(detect_hec_target)
+
+    log "Enabling activity logs stream input for account='${account}'..."
+    local body
+    body=$(form_urlencode_pairs \
+        disabled "0" \
+        thousandeyes_user "${account}" \
+        thousandeyes_acc_group "${acc_group}" \
+        hec_target "${hec_target}" \
+        hec_token "${hec_token}" \
+        activity_index "thousandeyes_activity")
+    rest_create_input "${SK}" "${SPLUNK_URI}" "${APP_NAME}" \
+        "activity_logs_stream" "activity_${account}" "${body}"
+    log "  Activity logs stream input enabled."
+}
+
+enable_alerts_inputs() {
+    local account="$1" acc_group="$2" hec_token="$3"
+    local hec_target
+    hec_target=$(detect_hec_target)
+
+    log "Enabling alerts stream input for account='${account}'..."
+    local body
+    body=$(form_urlencode_pairs \
+        disabled "0" \
+        thousandeyes_user "${account}" \
+        thousandeyes_acc_group "${acc_group}" \
+        hec_target "${hec_target}" \
+        hec_token "${hec_token}" \
+        alerts_index "thousandeyes_alerts")
+    rest_create_input "${SK}" "${SPLUNK_URI}" "${APP_NAME}" \
+        "alerts_stream" "alerts_${account}" "${body}"
+    log "  Alerts stream input enabled."
+}
+
+enable_all_inputs() {
+    local account="$1" acc_group="$2" hec_token="$3"
+    enable_metrics_inputs "${account}" "${acc_group}" "${hec_token}"
+    enable_traces_inputs "${account}" "${acc_group}" "${hec_token}"
+    enable_events_inputs "${account}" "${acc_group}"
+    enable_activity_inputs "${account}" "${acc_group}" "${hec_token}"
+    enable_alerts_inputs "${account}" "${acc_group}" "${hec_token}"
+    log "All inputs enabled (5 inputs)."
+}
+
+main() {
+    warn_if_current_skill_role_unsupported
+
+    if $ENABLE_INPUTS; then
+        check_prereqs
+        if [[ -z "${ACCOUNT}" || -z "${INPUT_TYPE}" ]]; then
+            log "ERROR: --enable-inputs requires --account and --input-type"
+            exit 1
+        fi
+        if [[ -z "${ACCOUNT_GROUP}" ]]; then
+            log "ERROR: --enable-inputs requires --account-group"
+            exit 1
+        fi
+        case "${INPUT_TYPE}" in
+            all) enable_all_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" "${HEC_TOKEN}" ;;
+            metrics) enable_metrics_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" "${HEC_TOKEN}" ;;
+            traces) enable_traces_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" "${HEC_TOKEN}" ;;
+            events) enable_events_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" ;;
+            activity) enable_activity_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" "${HEC_TOKEN}" ;;
+            alerts) enable_alerts_inputs "${ACCOUNT}" "${ACCOUNT_GROUP}" "${HEC_TOKEN}" ;;
+            *) log "ERROR: Unknown input type '${INPUT_TYPE}'." >&2; usage 1 ;;
+        esac
+        log_live_input_summary
+        log "$(log_platform_restart_guidance "input changes")"
+        exit 0
+    fi
+
+    if $HEC_ONLY; then
+        if is_splunk_cloud; then
+            ensure_hec_token "${HEC_TOKEN}"
+        else
+            ensure_search_api_session
+            ensure_hec_token "${HEC_TOKEN}"
+        fi
+        exit 0
+    fi
+
+    if $INDEXES_ONLY; then
+        create_indexes
+        log "$(log_platform_restart_guidance "index changes")"
+        exit 0
+    fi
+
+    if is_splunk_cloud; then
+        ensure_hec_token "${HEC_TOKEN}"
+    else
+        ensure_search_api_session
+        ensure_hec_token "${HEC_TOKEN}"
+    fi
+    create_indexes
+    log "$(log_platform_restart_guidance "setup changes")"
+
+    [[ -t 0 ]] || return 0
+    log ""
+    read -rp "Would you like to authenticate a ThousandEyes account now? [y/N]: " yn
+    case "${yn}" in
+        [yY]|[yY][eE][sS]) ;;
+        *) return 0 ;;
+    esac
+
+    log ""
+    bash "${SCRIPT_DIR}/configure_account.sh"
+    local account_email
+    account_email=$(bash -c '
+        source "'"${SCRIPT_DIR}"'/../../shared/lib/credential_helpers.sh"
+        load_splunk_credentials >/dev/null 2>&1
+        SK=$(get_session_key "${SPLUNK_URI}" 2>/dev/null)
+        splunk_curl "${SK}" \
+            "${SPLUNK_URI}/servicesNS/nobody/ta_cisco_thousandeyes/ta_cisco_thousandeyes_account?output_mode=json" \
+            2>/dev/null | python3 -c "
+import json, sys
+try:
+    data = json.load(sys.stdin)
+    for e in data.get(\"entry\", []):
+        print(e.get(\"name\", \"\"), end=\"\")
+        break
+except: pass
+" 2>/dev/null
+    ' 2>/dev/null || true)
+
+    if [[ -z "${account_email}" ]]; then
+        log "Could not detect the ThousandEyes account name."
+        log "Run setup.sh --enable-inputs manually after verifying the account."
+        return 0
+    fi
+
+    log ""
+    read -rp "Would you like to enable data inputs for ${account_email}? [y/N]: " inputs_yn
+    case "${inputs_yn}" in
+        [yY]|[yY][eE][sS]) ;;
+        *) log ""; log "Run 'bash ${SCRIPT_DIR}/validate.sh' to verify the deployment."; return 0 ;;
+    esac
+
+    local acc_group
+    read -rp "ThousandEyes account group name: " acc_group
+    [[ -z "${acc_group}" ]] && { log "ERROR: Account group is required for inputs."; return 1; }
+
+    log ""
+    check_prereqs
+    enable_all_inputs "${account_email}" "${acc_group}" "${HEC_TOKEN}"
+    log_live_input_summary
+    log ""
+    log "Run 'bash ${SCRIPT_DIR}/validate.sh' to verify the deployment."
+}
+
+main
