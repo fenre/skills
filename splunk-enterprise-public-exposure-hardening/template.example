@@ -1,0 +1,213 @@
+# Splunk Enterprise Public Internet Exposure Hardening Worksheet
+#
+# Copy this file locally (e.g. cp template.example my-deployment.yaml) and
+# fill in the non-secret values. Do NOT store passwords, pass4SymmKey
+# values, TLS private keys, or HEC tokens here. The renderer reads
+# secrets only from local files via *-file CLI flags.
+
+# ---------------------------------------------------------------------------
+# Topology
+# ---------------------------------------------------------------------------
+
+# single-search-head | shc-with-hec | shc-with-hec-and-hf
+topology: single-search-head
+
+# Public-facing FQDN that browsers/clients will use. Must have CA-signed cert.
+public_fqdn: splunk.example.com
+hec_fqdn: hec.example.com
+
+# CIDR(s) the reverse proxy / load balancer hosts live in.
+# Splunk has no XFF allowlist, so this CIDR is what acceptFrom restricts to.
+proxy_cidr: 10.0.10.0/24
+
+# Indexer cluster CIDR — only reachable to the SH and DMZ HF.
+indexer_cluster_cidr: 10.0.20.0/24
+
+# Bastion CIDR — what reaches /services, /servicesNS, /en-US/manager.
+bastion_cidr: 10.0.30.0/24
+
+# ---------------------------------------------------------------------------
+# Surface enables
+# ---------------------------------------------------------------------------
+
+enable_web: true
+enable_hec: true
+enable_s2s: true
+enable_splunkd_rest: false  # Public access to 8089 is NEVER allowed by this skill.
+
+# Optional HEC mTLS (highly recommended for public HEC).
+hec_mtls: false
+
+# ---------------------------------------------------------------------------
+# Splunk runtime
+# ---------------------------------------------------------------------------
+
+splunk_home: /opt/splunk
+service_user: splunk
+
+# Splunk version — used for SVD floor enforcement. The skill refuses to
+# apply if this is below the floor in references/cve-svd-floor.json.
+splunk_version: 10.4.0
+
+# ---------------------------------------------------------------------------
+# Crypto / TLS
+# ---------------------------------------------------------------------------
+
+# tls12 (default) emits sslVersions = tls1.2; tls12_13 emits tls1.2,tls1.3.
+tls_policy: tls12
+
+# Whether to render hardened S2S inputs.conf with requireClientCert=true.
+s2s_mtls: true
+
+# Whether to render hardened forwarder outputs.conf with sslVerifyServerCert=true.
+forwarder_mtls: true
+
+# CA bundle path that lives on the target host. Used by clients verifying
+# server certs and (when *_mtls=true) by the server verifying client certs.
+ca_bundle_path: /opt/splunk/etc/auth/cabundle.pem
+
+# Server cert + key paths on the target host. Production certs only —
+# preflight refuses if these resolve to default Splunk-shipped certs.
+server_cert_path: /opt/splunk/etc/auth/splunkweb/cert.pem
+server_key_path: /opt/splunk/etc/auth/splunkweb/privkey.pem
+
+# Subject Alternative Names you require on the leaf certificate.
+required_sans:
+  - splunk.example.com
+  - hec.example.com
+
+# ---------------------------------------------------------------------------
+# Authentication
+# ---------------------------------------------------------------------------
+
+# native | saml | reverse-proxy-sso | ldap
+auth_mode: saml
+
+# When auth_mode = saml: SAML IdP metadata file path on the local renderer
+# host (will be referenced by absolute path in authentication.conf).
+saml_idp_metadata_path: /etc/splunk-public-exposure/saml-idp-metadata.xml
+saml_entity_id: https://splunk.example.com/saml
+saml_signature_algorithm: RSA-SHA256
+
+# When auth_mode = reverse-proxy-sso: trustedIP for the proxy.
+proxy_sso_trusted_ip: 10.0.10.5
+
+# When auth_mode = ldap (see references/auth-ldap-hardening.md for details).
+ldap_strategy_name: ldaphost
+ldap_host: ad.example.com
+ldap_port: 0                     # 0 = auto: 636 if SSL, else 389
+ldap_ssl_enabled: true
+ldap_bind_dn: "cn=svc_splunk,ou=Service,dc=example,dc=com"
+# bind password lives in a local file; never put the value here.
+ldap_bind_password_file: /tmp/splunk_ldap_bind_password
+# Multi-tree DNs use ';' (semicolon) per Splunk authentication.conf spec.
+ldap_user_base_dn: "ou=Users,dc=example,dc=com"
+ldap_user_base_filter: ""
+ldap_user_name_attribute: sAMAccountName    # AD; use 'uid' for OpenLDAP
+ldap_real_name_attribute: cn
+ldap_email_attribute: mail
+ldap_group_base_dn: "ou=Groups,dc=example,dc=com"
+ldap_group_base_filter: ""
+ldap_group_name_attribute: cn
+ldap_group_member_attribute: member
+ldap_group_mapping_attribute: dn
+ldap_nested_groups: true
+ldap_anonymous_referrals: 0       # spec default 1 (insecure); harden to 0
+ldap_enable_range_retrieval: false
+ldap_sizelimit: 1000              # NOTE: spec spelling is lowercase
+ldap_pagelimit: -1
+ldap_time_limit: 15               # spec hard cap is 30
+ldap_network_timeout: 20          # must > ldap_time_limit
+ldap_charset: ""
+ldap_public_reader_group: SplunkPublicReaders   # LDAP group -> role_public_reader
+
+# LDAP refusals (set true ONLY if you understand the risk)
+allow_cleartext_ldap: false       # required to set ldap_ssl_enabled false
+allow_anonymous_ldap_bind: false  # required to leave ldap_bind_dn empty
+
+# Scripted-auth refusal — Splunk authType=Scripted invokes an external
+# script for every login. Refused at preflight unless explicitly acked.
+allow_scripted_auth: false
+
+# Local password policy for the break-glass admin (still required).
+min_password_length: 14
+expire_password_days: 90
+lockout_attempts: 5
+lockout_mins: 30
+password_history_count: 24
+
+# ---------------------------------------------------------------------------
+# Roles, capabilities, search guardrails
+# ---------------------------------------------------------------------------
+
+# Allowed indexes for the public_reader role (CSV).
+public_reader_allowed_indexes: main,summary
+
+# Search-time guardrails for the public_reader role.
+public_reader_srch_jobs_quota: 3
+public_reader_srch_max_time: 300
+public_reader_srch_time_win: 86400
+public_reader_srch_disk_quota: 100
+
+# ---------------------------------------------------------------------------
+# Ingest sizing
+# ---------------------------------------------------------------------------
+
+# HEC max_content_length in bytes. 838860800 (800 MB) is the Splunk default.
+# Renderer aligns proxy client_max_body_size with this.
+hec_max_content_length: 838860800
+
+# Per-IP rate limit on /en-US/account/login (requests per minute).
+login_rate_per_minute: 5
+
+# Streaming search proxy_read_timeout in seconds.
+streaming_search_timeout: 600
+
+# ---------------------------------------------------------------------------
+# FIPS / unarchive (defense in depth)
+# ---------------------------------------------------------------------------
+
+# When true, the renderer emits a splunk-launch.conf overlay with
+# SPLUNK_FIPS=1 and the chosen FIPS_VERSION. The host kernel must
+# also be in FIPS mode and Splunk must be cold-started after applying.
+enable_fips: false
+fips_version: "140-3"            # 140-2 | 140-3
+
+# SVD-2026-0302 (RCE) defense-in-depth allowlist for the unarchive
+# command path on the search head. Empty = no unarchive permitted.
+allowed_unarchive_commands: ""
+
+# ---------------------------------------------------------------------------
+# Local-only secret file paths (NOT committed to git; chmod 600).
+# Use `bash skills/shared/scripts/write_secret_file.sh /tmp/<name>` to
+# create each one without the secret hitting shell history.
+# ---------------------------------------------------------------------------
+
+admin_password_file: /tmp/splunk_admin_password
+pass4symmkey_file: /tmp/splunk_pass4symmkey
+ssl_key_password_file: /tmp/splunk_ssl_key_password
+
+# Optional file paths only used in specific modes.
+saml_signing_cert_file: /tmp/splunk_saml_signing_cert
+saml_signing_key_file: /tmp/splunk_saml_signing_key
+hec_mtls_ca_bundle_file: /opt/splunk/etc/auth/hec_client_ca.pem
+
+# When rotating a federated-search provider's service-account password
+# (see references/federated-search-provider-hardening.md).
+federation_service_account_password_file: /tmp/splunk_federation_service_account_password
+
+# ---------------------------------------------------------------------------
+# External probe (used by preflight + validate to confirm 8089/8191/8065/9887
+# are NOT reachable from the internet). The command must accept "host port"
+# args and return zero only when the port is reachable.
+# ---------------------------------------------------------------------------
+
+external_probe_cmd: "ssh probe@bastion.example.com nc -zv"
+
+# ---------------------------------------------------------------------------
+# Operator acknowledgements
+# ---------------------------------------------------------------------------
+
+# Setting this to true is what the --accept-public-exposure flag captures.
+# Renderer will refuse to apply unless the flag is present at apply time.
+operator_acknowledges_public_exposure: false

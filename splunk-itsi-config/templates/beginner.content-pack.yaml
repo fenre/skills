@@ -1,0 +1,73 @@
+# Beginner content-pack starter.
+# Replace the connection and pack profile values, then run:
+#   bash scripts/setup.sh --workflow content-packs --spec templates/beginner.content-pack.yaml
+
+connection:
+  # Leave blank to use SPLUNK_SEARCH_API_URI from the credentials file.
+  base_url: ""
+  session_key_env: SPLUNK_SESSION_KEY
+  verify_ssl: false
+  platform: auto
+
+itsi:
+  require_present: true
+  install_if_missing: true
+  source: splunkbase
+  app_id: "1841"
+
+content_library:
+  require_present: true
+  install_if_missing: true
+  source: splunkbase
+  app_id: "5391"
+  refresh_catalog: true
+
+# Rich profiles include app/input/macro checks:
+# aws, cisco_data_center, cisco_enterprise_networks, cisco_thousandeyes,
+# linux, splunk_appdynamics, splunk_observability_cloud, vmware, windows.
+#
+# Other Content Library packs can use a documented profile key, exact title,
+# catalog_title, or pack_id. Generic catalog entries still preview/install/validate
+# and report follow-up steps.
+#
+# Keep one pack in the first pass. Add more after preview and validation are clean.
+packs:
+  - profile: cisco_thousandeyes
+    resolution: skip
+    enabled: false
+    saved_search_action: disable
+    install_all: true
+    backfill: false
+    # Keep empty unless you have reviewed the current Content Packs prefix known issue.
+    prefix: ""
+    index_macro_value: index="thousandeyes"
+
+    # Example generic catalog entry. Keep commented until needed.
+    # - title: Microsoft 365
+    #   resolution: skip
+    #   enabled: false
+    #   saved_search_action: disable
+    #   install_all: true
+    #   backfill: false
+    #   prefix: ""
+    #   configured_outcome:
+    #     saved_searches:
+    #       - app: DA-ITSI-CP-microsoft-365
+    #         name: Microsoft 365 Entity Discovery
+    #         enabled: false
+    #     macros:
+    #       - app: DA-ITSI-CP-microsoft-365
+    #         name: itsi-cp-microsoft-365-indexes
+    #         definition: index="o365"
+    #     service_imports:
+    #       - title: Import reviewed services
+    #         app: SA-ITOA
+    #         search: '| inputlookup reviewed_services.csv | table service_title | itsiimportobjects'
+    #         expected_service_count: 50
+    #         allow_service_import: false
+    #     lookup_file_uploads:
+    #       - app: DA-ITSI-CP-microsoft-365
+    #         name: ownership.csv
+    #         staged_path: /opt/splunk/var/run/splunk/lookup_tmp/ownership.csv
+    #         create: true
+    #         allow_lookup_file_upload: false
