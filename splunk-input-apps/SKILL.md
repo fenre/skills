@@ -1,4 +1,14 @@
-# SKILL: Splunk Ingest Apps & Data Pipeline Selection Guide
+---
+name: splunk-input-apps
+description: >-
+  Select the optimal Splunk ingest method, Technology Add-on (TA), or input app
+  for any data source when researching or building a data pipeline. Covers app
+  types (TAs, apps, SAs, DAs), collection methods (UF, HF, HEC, SC4S, DB Connect,
+  modular inputs), Splunkbase selection, CIM alignment, and deployment roles.
+  Use when choosing how to onboard a new data source into Splunk.
+---
+
+# Splunk Ingest Apps & Data Pipeline Selection Guide
 
 > **Purpose**: Provide authoritative guidance on selecting the optimal Splunk ingest method, Technology Add-on (TA), or input app for any given data source when researching and developing a data pipeline.
 >
