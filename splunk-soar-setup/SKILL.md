@@ -1,17 +1,6 @@
 ---
 name: splunk-soar-setup
-description: >-
-  Render, preflight, apply, and validate the full Splunk SOAR lifecycle:
-  Splunk SOAR (On-prem) unprivileged single-instance install, On-prem cluster
-  install with external services (PostgreSQL local or AWS RDS, GlusterFS,
-  Elasticsearch, HAProxy), SOAR Cloud onboarding helper (JWT capture, IP
-  allowlist, REST automation user provisioning), Splunk SOAR Automation
-  Broker on Docker or Podman with FIPS detection, Splunk-side apps (Splunk
-  App for SOAR Splunkbase 6361, Splunk App for SOAR Export Splunkbase 3411),
-  and ES integration readiness via the existing Mission Control wiring. Use
-  when the user asks to install Splunk SOAR On-prem, build a SOAR cluster,
-  onboard SOAR Cloud, install Automation Broker, install splunk-side SOAR
-  apps, or wire up SOAR with Splunk Enterprise Security.
+description: "Splunk SOAR lifecycle: On-prem single and cluster install, SOAR Cloud onboarding, Automation Broker on Docker/Podman, Splunk-side SOAR apps, ES integration. Use to install or connect Splunk SOAR."
 ---
 
 # Splunk SOAR Setup

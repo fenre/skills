@@ -1,12 +1,6 @@
 ---
 name: splunk-db-connect-setup
-description: >-
-  Render, preflight, validate, and hand off production-safe Splunk DB Connect
-  JDBC ingestion, lookup, enrichment, and export assets for Splunk Platform. Use
-  when the user asks to install or plan DB Connect, configure DBX Java and JDBC
-  drivers, prepare identities, connections, inputs, outputs, lookups, SQL
-  Explorer, dbxquery, dbxoutput, dbxlookup, DB Connect over Federated Search,
-  or validate DB Connect topology.
+description: "Plan and validate Splunk DB Connect: Java/JDBC drivers, identities, connections, inputs, outputs, lookups, dbxquery/dbxoutput/dbxlookup, federated use. Use for database ingestion, lookups or export with DB Connect."
 ---
 
 # Splunk DB Connect Setup

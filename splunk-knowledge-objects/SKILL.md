@@ -1,14 +1,6 @@
 ---
 name: splunk-knowledge-objects
-description: >-
-  Render, preflight, and validate Splunk knowledge-object governance assets for
-  saved searches, reports, alerts, macros, lookups, lookup definitions,
-  eventtypes, tags, and field extractions, plus sharing/permission metadata and
-  ownership reassignment. Use when the user asks to govern or audit saved
-  searches and scheduled searches, manage lookups and lookup definitions,
-  standardize macros, eventtypes, and tags, fix knowledge-object permissions and
-  sharing, find orphaned or private knowledge objects, reassign ownership, or
-  stage governed knowledge objects and metadata into an app.
+description: "Govern Splunk knowledge objects: saved searches, macros, lookups, eventtypes, tags, field extractions, sharing and permissions, orphaned objects, ownership reassignment. Use to audit or clean up knowledge objects."
 ---
 
 # Splunk Knowledge-Object Governance

@@ -1,14 +1,6 @@
 ---
 name: splunk-secure-gateway
-description: >-
-  Render, preflight, and validate Splunk Secure Gateway and Splunk Connected
-  Experiences (Splunk Mobile, Splunk TV, Splunk AR) readiness: Spacebridge
-  outbound connectivity checks, splunk_secure_gateway app enablement, token
-  (JWT) authentication readiness, device registration handoff, and an MDM
-  AppConfig template. Use when the user asks to set up Splunk Mobile or Connected
-  Experiences, enable or troubleshoot Splunk Secure Gateway, verify Spacebridge
-  connectivity, register mobile devices, configure MDM for Splunk Mobile, or
-  check mobile alert/dashboard delivery readiness.
+description: "Splunk Secure Gateway and Connected Experiences (Splunk Mobile, TV, AR): Spacebridge connectivity, token auth, device registration, MDM AppConfig. Use to enable or troubleshoot Splunk Mobile delivery."
 ---
 
 # Splunk Secure Gateway / Mobile

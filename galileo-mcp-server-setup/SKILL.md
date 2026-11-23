@@ -1,15 +1,6 @@
 ---
 name: galileo-mcp-server-setup
-description: >-
-  Render, validate, probe, and document safe client setup for the official
-  Galileo MCP Server (`https://api.galileo.ai/mcp/http/mcp`) across Cursor,
-  VS Code, Codex, Claude Code, and AWS Kiro. Use when configuring Galileo MCP,
-  registering Galileo with IDE/agent clients, inventorying live MCP tools, or
-  auditing Galileo MCP product coverage. Covers Galileo API-key secret handling,
-  self-hosted URL derivation, live MCP tool inventory and drift checks,
-  write/generation tool gating, MCP tool-call observability handoffs, and
-  explicit boundaries between Galileo MCP IDE workflows and broader Galileo
-  platform, Agent Control, Splunk HEC/OTLP, dashboard, and detector automation.
+description: "Set up and audit clients for the official Galileo MCP Server (Cursor, VS Code, Codex, Claude Code, Kiro): API-key handling, self-hosted URLs, live tool inventory, write-tool gating. Use when configuring or checking Galileo MCP."
 ---
 
 # Galileo MCP Server Setup

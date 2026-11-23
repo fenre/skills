@@ -1,13 +1,6 @@
 ---
 name: galileo-agent-control-setup
-description: >-
-  Render, validate, and optionally apply Agent Control setup assets covering
-  Docker or external server readiness, file-backed auth templates, policy
-  controls, Python @control() snippets, TypeScript runtime snippets,
-  OpenTelemetry and custom Splunk HEC event sinks, Splunk HEC and OTel
-  Collector handoffs, and Splunk Observability dashboards/detectors. Use when
-  the user asks to govern runtime agent behavior with Agent Control and wire
-  control events to Splunk Platform or Splunk Observability Cloud.
+description: "Set up Galileo Agent Control: server readiness, policy controls, Python @control() and TypeScript snippets, control events to Splunk HEC/OTel and Splunk Observability dashboards/detectors. Use to govern runtime agent behavior with Agent Control."
 ---
 
 # Galileo Agent Control Setup

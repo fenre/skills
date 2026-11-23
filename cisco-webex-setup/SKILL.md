@@ -1,12 +1,6 @@
 ---
 name: cisco-webex-setup
-description: >-
-  Install, configure, and validate the Webex Add-on for Splunk and companion
-  Webex App dashboards. Covers Webex REST OAuth accounts, meetings, admin and
-  security audit, meeting qualities, detailed call history, generic endpoints,
-  and Webex Contact Center search inputs. Use when the user asks about Cisco
-  Webex, Webex Meetings, Webex Calling, Webex Contact Center, or Webex Splunk
-  dashboard readiness.
+description: "Install and validate the Webex Add-on for Splunk and Webex App dashboards: OAuth accounts, meetings, audit, meeting quality, call history, Contact Center inputs. Use for Webex data in Splunk."
 ---
 
 # Cisco Webex Setup

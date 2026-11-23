@@ -1,17 +1,6 @@
 ---
 name: splunk-platform-pki-setup
-description: >-
-  Render, preflight, apply, validate, rotate, and inventory private or public
-  PKI for Splunk Enterprise TLS surfaces: Splunk Web, splunkd REST, S2S, HEC,
-  KV Store, indexer clusters, SHC, License Manager, Deployment Server,
-  Monitoring Console, Federated Search, heavy forwarders, Universal Forwarders,
-  Edge Processor, SAML SP signing, LDAPS trust, and CLI CA trust. Covers CSR
-  handoffs, internal CA rendering, FIPS mode, TLS policy presets, KV Store EKU
-  enforcement, default-cert refusal, SAN-aware leaf certs, mTLS, replication-port
-  TLS, and delegated rotation runbooks. Use when the user asks to build Splunk
-  PKI, mint certs, prepare third-party CA CSRs, replace default certs, configure
-  mTLS, fix KV Store cert validation, encrypt replication traffic, configure
-  SAML/LDAPS trust, or rotate Splunk TLS certificates.
+description: "Build, rotate and validate PKI/TLS for Splunk Enterprise: Web, splunkd, S2S, HEC, KV Store, clusters, forwarders; CSRs, internal CA, mTLS, FIPS, SAML/LDAPS trust, default-cert replacement. Use for any Splunk certificate work."
 ---
 
 # Splunk Platform PKI Setup

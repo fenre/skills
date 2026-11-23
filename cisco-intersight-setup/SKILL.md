@@ -1,12 +1,6 @@
 ---
 name: cisco-intersight-setup
-description: >-
-  Automate Cisco Intersight Add-on for Splunk (Splunk_TA_Cisco_Intersight) setup
-  and configuration. Creates indexes, configures Intersight accounts via REST API
-  using OAuth2 client credentials, enables audit/alarm, inventory, and metrics
-  inputs, stores credentials securely, and validates the deployment. Use when the
-  user asks about Cisco Intersight, UCS, HyperFlex, Intersight TA setup,
-  Splunk_TA_Cisco_Intersight, or compute infrastructure monitoring.
+description: "Set up the Cisco Intersight Add-on for Splunk (Splunk_TA_Cisco_Intersight): indexes, OAuth2 client credentials, audit/alarm, inventory and metrics inputs, validation. Use for Intersight, UCS or HyperFlex data in Splunk."
 ---
 
 # Cisco Intersight TA Setup Automation

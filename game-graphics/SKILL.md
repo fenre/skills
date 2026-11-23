@@ -1,13 +1,6 @@
 ---
 name: game-graphics
-description: >
-  Game graphics and visual art reference covering pixel art, sprite creation, character design,
-  animation, concept art, tilesets, UI/HUD design, VFX, and art direction. Includes color theory,
-  shading techniques, sprite sheet specifications, animation cycles, sub-pixel animation,
-  anti-aliasing, outline styles, parallax, lighting, and style guide creation. Tool guidance for
-  Aseprite, Pyxel Edit, Piskel, Krita, and Photoshop. Use when creating game art, designing
-  characters, making pixel art, building sprite sheets, animating sprites, creating tilesets,
-  designing game UI, establishing art direction, or answering questions about 2D game graphics.
+description: "2D game art: pixel art, sprites, character design, animation cycles, tilesets, UI/HUD, VFX, color theory, shading, sprite sheets, art direction; Aseprite, Krita and similar tools. Use when creating or critiquing game graphics."
 ---
 
 # Game Graphics & Visual Art Reference

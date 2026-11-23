@@ -1,17 +1,6 @@
 ---
 name: adventure-game-2d
-description: >
-  2D point-and-click adventure game development reference in the style of Monkey Island,
-  Day of the Tentacle, Thimbleweed Park, and other LucasArts/Sierra classics.
-  Covers: room/scene architecture, verb-based interaction systems, inventory management,
-  dialogue trees with branching conversations, puzzle design (combinatorial, lateral thinking,
-  inventory, environmental), character pathfinding over walkable area polygons, pixel art
-  scene composition with parallax layers, game state and flag tracking, save/load systems,
-  cutscene scripting, humor and comedy writing for games, and SCUMM-inspired UI layouts.
-  Primarily targets Phaser 3 (TypeScript) but principles are engine-agnostic.
-  Use when building a point-and-click adventure, creating room-based exploration,
-  implementing dialogue systems, designing adventure game puzzles, or asking about
-  Monkey Island, SCUMM, or classic adventure game design.
+description: "Point-and-click adventure game development (Monkey Island/SCUMM style): rooms, verb UI, inventory, dialogue trees, puzzle design, walkable-area pathfinding, cutscenes, save/load, comedy writing. Phaser 3 first, engine-agnostic principles. Use when building or designing a classic adventure game."
 ---
 
 # 2D Point-and-Click Adventure Game Development

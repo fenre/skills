@@ -1,6 +1,6 @@
 ---
 name: cisco-edge-intelligence
-description: "Cisco Edge Intelligence deployment and Splunk HEC integration guide. Use when: (1) Deploying Cisco Edge Intelligence on IR1101, IR829, IC3000, or Catalyst IE switches, (2) Configuring industrial data sources (OPC-UA, Modbus TCP/Serial, MQTT, Serial, NTCIP), (3) Creating data pipelines with Data Rules or Data Logic (JavaScript transforms), (4) Setting up Splunk HEC as a destination for operational telemetry, (5) Troubleshooting EI agent connectivity and data flow. Part of the Splunk VISTA for building operational data pipelines into Splunk."
+description: "Cisco Edge Intelligence on IR1101/IR829/IC3000/Catalyst IE: OPC-UA, Modbus, MQTT, serial data sources, Data Rules/Data Logic pipelines, Splunk HEC destination, agent troubleshooting. Use for industrial edge data pipelines into Splunk."
 ---
 
 # Cisco Edge Intelligence to Splunk Integration

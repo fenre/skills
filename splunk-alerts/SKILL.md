@@ -1,6 +1,6 @@
 ---
 name: splunk-alerts
-description: "Splunk Alerts and Saved Searches reference for savedsearches.conf configuration. Use when: (1) Creating scheduled or real-time alerts in savedsearches.conf, (2) Configuring alert trigger conditions (counttype, relation, quantity), (3) Setting up alert actions (email, webhook, log event, CSV output), (4) Configuring alert throttling and suppression, (5) Writing cron schedule expressions for alert scheduling, (6) Troubleshooting savedsearches.conf startup errors such as 'Invalid key' or 'Cannot parse into key-value pair', (7) Packaging apps with alerts for AppInspect and Splunk Cloud vetting."
+description: "Splunk alerts and savedsearches.conf: scheduled/real-time alerts, trigger conditions, actions (email, webhook, log event), throttling, cron schedules, 'Invalid key' errors, AppInspect packaging. Use when creating or fixing Splunk alerts or saved searches."
 ---
 
 # Splunk Alerts & Saved Searches Reference

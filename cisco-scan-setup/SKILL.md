@@ -1,12 +1,6 @@
 ---
 name: cisco-scan-setup
-description: >-
-  Automate Splunk Cisco App Navigator (SCAN) setup and validation. Installs
-  the splunk-cisco-app-navigator app from a local package, verifies the
-  product catalog and Splunkbase lookup, triggers catalog sync from S3,
-  and validates the deployment. Use when the user asks about SCAN, Cisco
-  App Navigator, product catalog, ecosystem intelligence, or
-  splunk-cisco-app-navigator setup in Splunk.
+description: "Install and validate Splunk Cisco App Navigator (SCAN, splunk-cisco-app-navigator): product catalog, Splunkbase lookup, S3 catalog sync. Use for SCAN or Cisco App Navigator questions."
 ---
 
 # Splunk Cisco App Navigator (SCAN) Setup Automation

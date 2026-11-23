@@ -1,17 +1,6 @@
 ---
 name: splunk-observability-cloud-integration-setup
-description: >-
-  Render, preflight, apply, validate, and diagnose Splunk Platform to Splunk
-  Observability Cloud pairing for Splunk Cloud Platform and Splunk Enterprise.
-  Covers token-auth enablement, realm checks, Unified Identity or service-account
-  pairing, multi-org defaults, Centralized RBAC, Discover Splunk Observability
-  Cloud app configuration, Log Observer Connect, Related Content, Real Time
-  Metrics, Dashboard Studio O11y metrics, and Splunk_TA_sim modular inputs.
-  Use when a user asks to pair Splunk Platform with Splunk Observability Cloud,
-  set up Unified Identity or Centralized RBAC, configure the Discover app,
-  install the Infrastructure Monitoring Add-on, configure Related Content or
-  Log Observer Connect, bring O11y metrics into Splunk with sim, or navigate
-  from Splunk Platform into Observability workflows.
+description: "Pair Splunk Platform with Splunk Observability Cloud: token auth, Unified Identity, Centralized RBAC, Discover app, Log Observer Connect, Related Content, Real Time Metrics, Splunk_TA_sim. Use for Platform–Observability pairing."
 ---
 
 # Splunk Platform <-> Splunk Observability Cloud Integration Setup

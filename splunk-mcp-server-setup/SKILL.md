@@ -1,12 +1,6 @@
 ---
 name: splunk-mcp-server-setup
-description: >-
-  Install, configure, validate, and uninstall the Splunk MCP Server app
-  (Splunk_MCP_Server / "Splunk MCP TA"). Configures mcp.conf server settings,
-  rate limits, encrypted token issuance, and renders a shared client bridge
-  bundle that works with Cursor, Codex, and Claude Code. Use when the user asks about
-  Splunk MCP server setup, Splunk MCP TA, Splunk_MCP_Server, /services/mcp,
-  Cursor MCP, Codex MCP, or Claude Code MCP connectivity to Splunk.
+description: "Install and configure the Splunk MCP Server app (Splunk_MCP_Server): mcp.conf, rate limits, tokens, and a client bridge for Cursor, Codex and Claude Code. Use to connect AI clients to Splunk over MCP."
 ---
 
 # Splunk MCP Server Setup

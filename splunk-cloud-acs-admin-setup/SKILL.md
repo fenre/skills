@@ -1,16 +1,6 @@
 ---
 name: splunk-cloud-acs-admin-setup
-description: >-
-  Render, preflight, inventory, apply, audit, and validate Splunk Cloud Admin
-  Config Service (ACS) administration across IP allowlists, indexes, HEC tokens,
-  users, roles, capabilities, app permissions, private connectivity, outbound
-  ports, DDSS self-storage, limits.conf settings, maintenance windows, restarts,
-  apps, authentication tokens, deployment task status, license state, and
-  Observability pairing handoffs. Use when the user asks to manage Splunk Cloud
-  ACS, acs admin, ACS indexes, ACS HEC tokens, ACS users and roles, app
-  permissions, private connectivity, outbound ports, DDSS, ACS limits,
-  maintenance windows, restart current-stack, ACS license state, Observability
-  pairing, or to audit Splunk Cloud control-plane configuration.
+description: "Splunk Cloud Admin Config Service (ACS): IP allowlists, indexes, HEC tokens, users/roles, app permissions, private connectivity, outbound ports, DDSS, limits, maintenance windows, restarts, license state, O11y pairing. Use for any Splunk Cloud ACS administration or audit."
 ---
 
 # Splunk Cloud ACS Admin Setup

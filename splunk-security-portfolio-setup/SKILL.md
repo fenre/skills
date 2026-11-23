@@ -1,13 +1,6 @@
 ---
 name: splunk-security-portfolio-setup
-description: >-
-  Resolve Splunk security products and associated security offerings to the
-  correct local setup skill, install-only path, ES bundled workflow, or manual
-  handoff. Use when a user asks for total Splunk security portfolio coverage,
-  product gap analysis, or which Splunk security skill handles ES, ES 8.x
-  native SOAR, Security AI Assistant / AI Assistant in Security, Federated
-  Analytics, SOAR, Security Essentials, UBA, Attack Analyzer, ARI, Mission
-  Control, PCI, InfoSec, CIM, or related security apps.
+description: "Route Splunk security products to the right setup skill or handoff: ES, SOAR, Security Essentials, UBA, Attack Analyzer, ARI, Mission Control, PCI, InfoSec, CIM and more. Use for portfolio coverage or 'which skill handles X' security questions."
 ---
 
 # Splunk Security Portfolio Setup

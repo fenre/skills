@@ -1,11 +1,6 @@
 ---
 name: splunk-agent-management-setup
-description: >-
-  Render, preflight, apply, and validate Splunk Enterprise agent management
-  assets for deployment-server style server classes, deployment apps, and
-  deployment clients. Use when the user asks to manage universal forwarder or
-  heavy forwarder fleets, create serverclass.conf, configure deploymentclient.conf,
-  or prepare Splunk 10.x Agent Management / legacy Deployment Server workflows.
+description: "Render and validate Splunk Agent Management / Deployment Server content: server classes, deployment apps, serverclass.conf and deploymentclient.conf for UF/HF fleets. Use when managing forwarder fleets and their apps."
 ---
 
 # Splunk Agent Management Setup

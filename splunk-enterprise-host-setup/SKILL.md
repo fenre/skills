@@ -1,13 +1,6 @@
 ---
 name: splunk-enterprise-host-setup
-description: >-
-  Install Splunk Enterprise packages on Linux hosts and configure them as a
-  search-tier, indexer, heavy-forwarder, cluster manager, indexer peer, search
-  head cluster deployer, or search head cluster member. Supports local or SSH
-  execution, official URL or local package sources, role-aware forwarding, and
-  single-site clustered topologies. Use when the user asks to bootstrap a
-  Splunk host, install a heavy forwarder, build a search/index/forwarder tier,
-  or configure clustered Splunk Enterprise nodes.
+description: "Install Splunk Enterprise on Linux and configure the role: search head, indexer, heavy forwarder, cluster manager/peer, SHC deployer/member; local or SSH, single-site clusters. Use to bootstrap Splunk Enterprise hosts."
 ---
 
 # Splunk Enterprise Host Setup

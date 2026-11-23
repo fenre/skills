@@ -1,13 +1,6 @@
 ---
 name: splunk-data-source-readiness-doctor
-description: >-
-  Diagnose whether onboarded Splunk data sources are usable by Enterprise
-  Security, ITSI, Asset and Risk Intelligence, CIM, OCSF, and dashboards.
-  Use when the user asks for data-source readiness, ES/ITSI/ARI readiness
-  scoring, CIM or OCSF validation, data-model acceleration checks, dashboard
-  population checks, ingest pipeline health, knowledge-object enrichment,
-  federated data usability, ITSI summary health, or fix handoffs after
-  app/input setup.
+description: "Check whether onboarded Splunk data is usable by ES, ITSI, ARI, CIM, OCSF and dashboards: readiness scoring, data model and dashboard population, enrichment and ingest health, fix handoffs. Use after onboarding data or when content shows no results."
 ---
 
 # Splunk Data Source Readiness Doctor

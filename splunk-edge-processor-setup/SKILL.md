@@ -1,16 +1,6 @@
 ---
 name: splunk-edge-processor-setup
-description: >-
-  Render Cisco Data Fabric edge-routing workflows and the full Splunk Edge
-  Processor lifecycle for Splunk Cloud Platform tenants and Splunk Enterprise
-  10.0+ data management control planes. Covers EP objects, TLS / mTLS, Linux or
-  Docker instances, multi-instance scale-out, source types, destinations,
-  SPL2 pipelines with splunk-spl2-pipeline-kit linting, apply handoffs, default
-  destination guardrails, sizing preflight, ACS allowlist stubs, and
-  AI-powered data management readiness handoffs. Use when installing Edge
-  Processor, managing EP pipelines, routing forwarders, or handling Cisco Data
-  Fabric / telemetry pipeline management requests that need Splunk Platform
-  edge routing and transformation.
+description: "Splunk Edge Processor lifecycle for Cloud and Enterprise 10+: instances, TLS/mTLS, scale-out, sourcetypes, destinations, SPL2 pipelines, forwarder routing, Cisco Data Fabric edge routing. Use to install Edge Processor or manage its pipelines."
 ---
 
 # Splunk Edge Processor Setup

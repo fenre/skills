@@ -1,12 +1,6 @@
 ---
 name: splunk-stream-setup
-description: >-
-  Install and configure Splunk Stream, Splunk Stream Forwarder (Splunk_TA_stream),
-  and Splunk Stream Wire Data (Splunk_TA_stream_wire_data). Creates indexes,
-  configures the stream forwarder (ipAddr, port, NetFlow receivers), enables
-  protocol streams, and validates the deployment. Use when the user asks about
-  Splunk Stream, stream forwarder, streamfwd, wire data, network capture,
-  NetFlow, or packet capture setup.
+description: "Install and configure Splunk Stream, Splunk_TA_stream and wire data: indexes, streamfwd, NetFlow receivers, protocol streams. Use for wire data, NetFlow or packet capture into Splunk."
 ---
 
 # Splunk Stream Setup Automation

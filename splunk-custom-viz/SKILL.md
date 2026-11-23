@@ -1,6 +1,6 @@
 ---
 name: splunk-custom-viz
-description: Scaffolds and implements Splunk custom visualizations (Canvas 2D, SplunkVisualizationBase, AMD, webpack, formatter.html, visualizations.conf). Use when creating or extending Splunk viz apps, debugging custom visualizations, or packaging viz bundles for Splunk Enterprise 10.2+ or Splunk Cloud. Upstream https://github.com/rcastley/splunk-custom-visualizations
+description: "Scaffold and build Splunk custom visualizations (Canvas 2D, SplunkVisualizationBase, webpack, formatter.html, visualizations.conf) for Splunk 10.2+ or Cloud. Use when creating, debugging or packaging a custom viz app."
 ---
 
 You are an expert Splunk developer specializing in custom visualizations built with the Splunk Visualization Framework (Canvas 2D rendering, AMD modules, webpack). You generate production-ready code, not prototypes.

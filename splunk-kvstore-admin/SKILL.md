@@ -1,13 +1,6 @@
 ---
 name: splunk-kvstore-admin
-description: >-
-  Render, preflight, and validate Splunk App Key Value Store (KV Store)
-  administration assets for backup, restore, migration, resync, and health
-  checks. Use when the user asks to back up or restore the KV Store, migrate the
-  KV Store storage engine to WiredTiger, recover a stale or failed SHC KV Store
-  member, resync KV Store replication, change kvstore server.conf settings, or
-  check kvstore-status and replication on standalone search heads or search head
-  clusters.
+description: "Splunk KV Store administration: backup, restore, WiredTiger migration, resync, failed SHC member recovery, server.conf settings, kvstore-status checks. Use for KV Store maintenance or problems."
 ---
 
 # Splunk KV Store Administration

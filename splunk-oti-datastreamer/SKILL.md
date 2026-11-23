@@ -1,13 +1,6 @@
 ---
 name: splunk-oti-datastreamer
-description: >
-  OTI Datastreamer pipeline and HEC ingest configuration. Use this skill when:
-  (1) Configuring HEC tokens and endpoints for OTI Cloud or Splunk Cloud ingest;
-  (2) Setting up props.conf and transforms.conf for edge_hub_* index parsing;
-  (3) Tuning HEC client settings — batch size, compression, retry logic;
-  (4) Troubleshooting data pipeline issues — clock skew, dropped events, queue backup;
-  (5) Understanding the edge collection → transport → indexing pipeline stages;
-  (6) Configuring index-level tuning (maxHotBuckets, retention) for OT workloads.
+description: "OTI Datastreamer and HEC ingest for OT data: tokens and endpoints, edge_hub_* parsing, batching, compression and retries, clock skew and dropped events, index tuning. Use for OT data pipeline setup or troubleshooting."
 ---
 
 # OTI Datastreamer Pipeline Configuration

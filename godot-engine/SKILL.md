@@ -1,15 +1,6 @@
 ---
 name: godot-engine
-description: >
-  Godot 4 game engine reference covering GDScript, scene/node architecture, 2D and 3D
-  development, sprites, pixel art, animation (AnimatedSprite2D, AnimationPlayer,
-  AnimationTree state machines), physics (CharacterBody2D, RigidBody2D, Area2D),
-  tilemaps with terrains, shaders (CanvasItem, visual), UI/Control nodes, audio buses,
-  navigation/pathfinding, particles, camera systems, input handling, save/load,
-  project structure, autoloads, state machines, export/build, and Godot 3→4 migration.
-  Use when building any game in Godot, writing GDScript, configuring Godot project
-  settings, creating sprites or animations in Godot, working with Godot shaders,
-  or asking about Godot Engine features and best practices.
+description: "Godot 4 reference: GDScript, scenes and nodes, 2D/3D, animation and AnimationTree, physics bodies, tilemaps, shaders, UI, audio, navigation, input, autoloads, save/load, export, Godot 3→4 migration. Use for any Godot project or GDScript question."
 ---
 
 # Godot 4 Engine Reference

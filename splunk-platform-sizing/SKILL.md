@@ -1,15 +1,6 @@
 ---
 name: splunk-platform-sizing
-description: >-
-  Size a Splunk deployment from a use case (daily ingest, retention, search
-  load, premium apps, high availability) and render a sizing recommendation
-  report plus machine-readable sizing.json. Covers All-In-One single-server
-  standalone, distributed Splunk Validated Architectures (C/M series), Splunk
-  on Kubernetes (SOK and Splunk POD), and Splunk Cloud, with Enterprise
-  Security and ITSI workload multipliers. Use when the user asks to size a
-  Splunk cluster, decide how many indexers or search heads they need, plan
-  reference hardware, evaluate an All-In-One vs distributed deployment, size
-  Splunk on Kubernetes, or estimate storage for a retention requirement.
+description: "Size a Splunk deployment from ingest, retention, search load, ES/ITSI and HA: All-In-One, Validated Architectures, Kubernetes or Cloud, with a report and sizing.json. Use to decide indexer/search head counts, hardware or storage."
 ---
 
 # Splunk Platform Sizing

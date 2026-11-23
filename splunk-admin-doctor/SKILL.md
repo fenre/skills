@@ -1,11 +1,6 @@
 ---
 name: splunk-admin-doctor
-description: >-
-  Diagnose Splunk Cloud Platform and Splunk Enterprise administration health,
-  render full-coverage doctor reports, and create selected safe fix packets.
-  Use when the user asks for a Splunk admin doctor, health audit, full feature
-  coverage check, production-safe remediation plan, Cloud/Enterprise admin
-  troubleshooting, or routing to existing Splunk admin skills.
+description: "Diagnose Splunk Cloud/Enterprise admin health and produce a full-coverage doctor report with safe fix packets. Use for a Splunk health audit, admin troubleshooting or a production-safe remediation plan."
 ---
 
 # Splunk Admin Doctor

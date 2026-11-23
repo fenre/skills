@@ -1,20 +1,6 @@
 ---
 name: splunk-search-head-cluster-setup
-description: >-
-  Render, preflight, apply, validate, and operate Splunk Enterprise Search Head
-  Clusters end-to-end: bootstrap (deployer + N-member init + captain election),
-  deployer bundle push (validate / status / apply / apply-skip-validation /
-  rollback with SHA and generation-drift tracking), rolling restart (default,
-  searchable with health-check loop, forced), captain transfer, member add /
-  decommission / remove, KV Store replication health (lag thresholds, oplog
-  reset, captain re-election), standalone-to-SHC migration, deployer
-  replacement, ES-on-SHC deployer placement, and failure-mode runbooks
-  (split-brain, quorum loss, deployer mismatch, captain crash loop). SHC
-  pass4SymmKey is templated as `$SHC_SECRET` for operator-managed rotation
-  (see Out of Scope). Use when the user asks to bootstrap an SHC, push a
-  deployer bundle, perform a searchable rolling restart, transfer the captain,
-  add or remove a member, troubleshoot KV Store replication lag, migrate a
-  standalone search head to SHC, or replace a deployer.
+description: "Build and operate Splunk search head clusters: bootstrap, deployer bundle push and rollback, rolling restarts, captain transfer, member add/remove, KV Store replication, standalone-to-SHC migration, failure runbooks. Use for any SHC setup or operation."
 ---
 
 # Splunk Search Head Cluster Setup

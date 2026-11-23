@@ -1,14 +1,6 @@
 ---
 name: splunk-spl2-pipeline-kit
-description: >-
-  Render and lint reusable SPL2 pipeline templates for Cisco Data Fabric,
-  Splunk Ingest Processor, and Edge Processor, including routing, redaction,
-  sampling, lookups, metrics, OCSF, decrypt, stats, custom templates,
-  SPL-to-SPL2 compatibility, and PCRE2 migration checks. Use when the user needs
-  SPL2 pipeline authoring, conversion review, compatibility linting, or shared
-  templates for Ingest Processor or Edge Processor workflows, including Cisco
-  Data Fabric or telemetry pipeline management requests that need reusable SPL2
-  pipeline logic.
+description: "Render and lint SPL2 pipeline templates for Ingest Processor and Edge Processor: routing, redaction, sampling, lookups, metrics, OCSF, SPL-to-SPL2 and PCRE2 checks. Use when authoring or reviewing SPL2 pipelines."
 ---
 
 # Splunk SPL2 Pipeline Kit

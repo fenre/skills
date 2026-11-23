@@ -1,12 +1,6 @@
 ---
 name: splunk-edge-hub-protocols
-description: >
-  Industrial protocol configuration reference for Splunk Edge Hub. Use this skill when:
-  (1) Configuring Modbus TCP/RTU connections — function codes, data types, byte order, register ranges;
-  (2) Setting up OPC UA connections — URL format, security modes, node ID formats, subscription parameters;
-  (3) Configuring MQTT broker connections — topic patterns, QoS levels, wildcards;
-  (4) Working with SNMP polling — version support, common OIDs, community strings;
-  (5) Setting up BACnet connections — object types, property identifiers, network ports.
+description: "Industrial protocol settings for Splunk Edge Hub: Modbus TCP/RTU registers and byte order, OPC UA endpoints and node IDs, MQTT topics and QoS, SNMP OIDs, BACnet objects. Use when configuring Edge Hub device connections."
 ---
 
 # Edge Hub Protocol Configuration Reference

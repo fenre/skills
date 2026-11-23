@@ -1,12 +1,6 @@
 ---
 name: cisco-catalyst-ta-setup
-description: >-
-  Automate Cisco Catalyst Add-on for Splunk (TA_cisco_catalyst) setup and
-  configuration. Creates indexes, configures Catalyst Center/ISE/SD-WAN/Cyber
-  Vision accounts via REST API, enables data inputs, stores credentials
-  securely, and validates the deployment. Use when the user asks about Cisco
-  Catalyst Center, DNA Center, DNAC, ISE, SD-WAN, Cyber Vision TA setup,
-  or TA_cisco_catalyst.
+description: "Set up the Cisco Catalyst Add-on for Splunk (TA_cisco_catalyst): indexes, Catalyst Center/DNAC, ISE, SD-WAN and Cyber Vision accounts, inputs, validation. Use for TA_cisco_catalyst or getting those products' data into Splunk."
 ---
 
 # Cisco Catalyst TA Setup Automation

@@ -1,14 +1,6 @@
 ---
 name: splunk-ingest-actions
-description: >-
-  Render, preflight, and validate Splunk Ingest Actions assets: RFS (Remote File
-  System) S3 and filesystem destinations in outputs.conf, a ruleset
-  specification for filter/mask/set-index/route rules, a manual heavy-forwarder
-  props.conf/transforms.conf preview, and ruleset status checks. Use when the
-  user asks to filter, mask, redact, or route data at ingest time, set up Splunk
-  Ingest Actions rulesets, configure an S3 or filesystem RFS destination, route
-  events to an alternate index or to S3, drop noisy events before indexing, or
-  audit existing ingest rulesets on Splunk Cloud Platform or Splunk Enterprise.
+description: "Splunk Ingest Actions: filter, mask, route or re-index events at ingest, S3/filesystem RFS destinations, ruleset specs and status checks on Cloud or Enterprise. Use to drop, redact or route data before indexing."
 ---
 
 # Splunk Ingest Actions

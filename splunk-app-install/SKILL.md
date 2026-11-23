@@ -1,11 +1,6 @@
 ---
 name: splunk-app-install
-description: >-
-  Install, update, and manage Splunk apps and add-ons (TAs). Supports installing
-  locally from .tgz/.spl files, remotely from a URL, or from Splunkbase. Can also
-  list installed apps and uninstall apps. Use when the user asks to install a
-  Splunk app, TA, add-on, download from Splunkbase, deploy an app package, or
-  manage installed apps.
+description: "Install, update, list or remove Splunk apps and add-ons from .tgz/.spl files, a URL or Splunkbase. Use when the user wants to install or manage a Splunk app or TA."
 ---
 
 # Splunk App Install

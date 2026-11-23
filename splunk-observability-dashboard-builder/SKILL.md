@@ -1,6 +1,6 @@
 ---
 name: splunk-observability-dashboard-builder
-description: Use when creating, planning, rendering, validating, or applying Splunk Observability Cloud dashboards from natural-language dashboard requests, JSON or YAML dashboard specs, SignalFlow chart definitions, or Observability dashboard-as-code workflows. Supports native classic Observability dashboard/chart APIs with render-first safety; treats modern dashboard sections, logs charts, service maps, and Dashboard Studio as advisory/secondary paths unless a verified API is available.
+description: "Create and apply Splunk Observability Cloud dashboards and charts from natural language, JSON/YAML specs or SignalFlow, render-first. Use for Observability (not Splunk Platform) dashboards."
 ---
 
 # Splunk Observability Dashboard Builder

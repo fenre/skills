@@ -1,11 +1,6 @@
 ---
 name: splunk-connect-for-syslog-setup
-description: >-
-  Deploy and validate Splunk Connect for Syslog (SC4S) for Splunk Enterprise or
-  Splunk Cloud. Prepares Splunk indexes and HEC, renders Docker/Podman/systemd
-  or Kubernetes Helm configuration, and validates SC4S startup. Use when the
-  user asks about SC4S, Splunk Connect for Syslog, syslog-ng collector setup, or
-  syslog ingestion through HEC.
+description: "Deploy and validate Splunk Connect for Syslog (SC4S) with Docker/Podman/systemd or Helm: indexes, HEC, startup checks. Use for syslog ingestion into Splunk via SC4S."
 ---
 
 # Splunk Connect for Syslog Setup

@@ -1,6 +1,6 @@
 ---
 name: splunk-observability-ai-agent-monitoring-setup
-description: Render, validate, diagnose, and safely apply Splunk Observability Cloud AI Agent Monitoring setup plans, including GenAI Python instrumentation, instrumentation-side evaluations, Log Observer Connect handoffs, histogram collector readiness, and AI Infrastructure Monitoring coverage. Use when setting up or auditing Splunk AI Agent Monitoring, GenAI telemetry packages, AI agent evaluation telemetry, or adjacent AI infrastructure observability.
+description: "Splunk Observability AI Agent Monitoring: GenAI Python instrumentation, evaluations, Log Observer Connect, AI infrastructure monitoring. Use to set up or audit observability for AI agents and LLM apps."
 ---
 
 # Splunk Observability AI Agent Monitoring Setup

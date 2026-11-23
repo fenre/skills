@@ -1,17 +1,6 @@
 ---
 name: splunk-spl-commands
-description: >
-  Complete SPL (Search Processing Language) command, function, and anti-pattern reference. Use this skill when:
-  (1) Writing or debugging SPL queries — filtering, extraction, aggregation, transformation commands;
-  (2) Using timechart, chart, or stats — understanding syntax, span, split-by, and when to use each;
-  (3) Looking up statistical functions (count, dc, avg, perc95, values, list);
-  (4) Using eval functions — string manipulation, math, date/time, conditional, multivalue, JSON, type checking;
-  (5) Working with regular expressions in Splunk (rex, regex, named captures);
-  (6) Formatting timestamps with strftime/strptime specifiers;
-  (7) Combining result sets (join alternatives, append, union, appendpipe, subsearch);
-  (8) Writing optimized SPL — avoiding common anti-patterns that cause errors or poor performance;
-  (9) Writing dashboard SPL for Dashboard Studio or Simple XML visualizations;
-  (10) Using tstats for accelerated data model queries.
+description: "SPL reference: commands, stats/eval functions, timechart/chart, rex and regex, strftime formats, join alternatives and subsearches, tstats, dashboard SPL, and common anti-patterns. Use when writing, debugging or optimizing any Splunk search."
 ---
 
 # SPL Command & Function Reference

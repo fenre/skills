@@ -1,11 +1,6 @@
 ---
 name: splunk-hec-service-setup
-description: >-
-  Render, preflight, apply, and validate Splunk HTTP Event Collector service
-  configuration for Splunk Enterprise and Splunk Cloud. Use when the user asks
-  for reusable HEC token management, inputs.conf rendering, ACS HEC tokens,
-  allowed index restrictions, indexer acknowledgement, HEC port/TLS settings,
-  or a shared ingestion endpoint for apps and external collectors.
+description: "Configure Splunk HTTP Event Collector on Enterprise and Cloud: tokens, allowed indexes, indexer acknowledgement, port/TLS, ACS HEC tokens. Use when creating or fixing HEC endpoints and tokens."
 ---
 
 # Splunk HEC Service Setup

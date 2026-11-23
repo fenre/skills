@@ -1,13 +1,6 @@
 ---
 name: cisco-products
-description: >
-  Cisco product families reference for Splunk integration. Use this skill when:
-  (1) Understanding Cisco product capabilities and data types — Meraki, ISE, SD-WAN, Catalyst Center,
-  ThousandEyes, Cyber Vision, Secure Firewall, Webex, Spaces, Edge Intelligence;
-  (2) Identifying data export methods for each Cisco product (REST API, webhooks, syslog, MQTT, SNMP);
-  (3) Mapping Cisco data to Splunk sourcetypes and CIM data models;
-  (4) Building dashboards or alerts for Cisco product data in Splunk;
-  (5) Planning multi-product Cisco deployments with Splunk as the analytics platform.
+description: "Reference of Cisco product families for Splunk: Meraki, ISE, SD-WAN, Catalyst Center, ThousandEyes, Cyber Vision, Secure Firewall, Webex, Spaces, Edge Intelligence — data types, export methods, sourcetypes, CIM mapping. Use when planning which Cisco data goes into Splunk and how."
 ---
 
 # Cisco Products Integration with Splunk

@@ -1,13 +1,6 @@
 ---
 name: computer-networking
-description: >
-  CCIE-level computer networking reference covering routing protocols (BGP, OSPF, EIGRP, IS-IS),
-  switching (VLANs, STP, VXLAN/EVPN), WAN (MPLS, SD-WAN, DMVPN, IPsec, SASE), wireless (WiFi 5/6/6E/7),
-  QoS, IPv6, data center design (spine-leaf), cabling/physical layer, network security, and management
-  platforms (Catalyst Center, Meraki, ThousandEyes, Aruba Central, Juniper Mist, Arista CloudVision).
-  Multi-vendor CLI coverage for Cisco IOS/IOS-XE/NX-OS/IOS-XR, Juniper Junos, Aruba AOS-CX, Arista EOS,
-  and Cato SASE. Use when answering ANY networking question — routing, switching, wireless, cabling,
-  protocols, ports, vendor CLI syntax, network design, or troubleshooting.
+description: "CCIE-level networking reference: routing (BGP, OSPF, EIGRP, IS-IS), switching (VLAN, STP, VXLAN/EVPN), WAN/SD-WAN/IPsec/SASE, Wi-Fi 5–7, QoS, IPv6, DC design, cabling, multi-vendor CLI (Cisco, Juniper, Aruba, Arista). Use for any networking design, protocol, CLI or troubleshooting question."
 ---
 
 # Computer Networking Reference (CCIE-Level)

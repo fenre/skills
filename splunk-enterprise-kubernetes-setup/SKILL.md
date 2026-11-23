@@ -1,11 +1,6 @@
 ---
 name: splunk-enterprise-kubernetes-setup
-description: >-
-  Render, preflight, apply, and validate Splunk Enterprise on Kubernetes using
-  either the generic Splunk Operator for Kubernetes Helm workflow or Splunk POD
-  on Cisco UCS with the Splunk Kubernetes Installer. Use when the user asks to
-  deploy Splunk Enterprise on Kubernetes, run SOK, build S1/C3/M4 on a cluster,
-  or prepare Splunk POD cluster-config.yaml and installer commands.
+description: "Deploy Splunk Enterprise on Kubernetes with the Splunk Operator (SOK, Helm) or Splunk POD on Cisco UCS: S1/C3/M4 topologies, cluster-config.yaml, validation. Use for Splunk on Kubernetes."
 ---
 
 # Splunk Enterprise Kubernetes Setup

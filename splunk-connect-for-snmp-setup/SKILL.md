@@ -1,11 +1,6 @@
 ---
 name: splunk-connect-for-snmp-setup
-description: >-
-  Deploy and validate Splunk Connect for SNMP (SC4SNMP) for Splunk Enterprise
-  or Splunk Cloud. Prepares Splunk indexes and HEC, renders Docker Compose or
-  Kubernetes Helm configuration, and validates SC4SNMP polling or trap
-  readiness. Use when the user asks about SC4SNMP, Splunk Connect for SNMP,
-  SNMP polling, or SNMP trap ingestion through HEC.
+description: "Deploy and validate Splunk Connect for SNMP (SC4SNMP) with Docker Compose or Helm: indexes, HEC, polling and trap readiness. Use for SNMP polling or trap ingestion into Splunk."
 ---
 
 # Splunk Connect for SNMP Setup

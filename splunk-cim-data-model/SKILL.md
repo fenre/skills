@@ -1,14 +1,6 @@
 ---
 name: splunk-cim-data-model
-description: >-
-  Render, preflight, and validate Splunk Common Information Model (CIM)
-  data-model management assets: per-model acceleration settings in
-  datamodels.conf, acceleration enable/disable plans, rebuild and backfill
-  helpers, and CIM population/compliance audits via tstats and the
-  summarization REST endpoint. Use when the user asks to manage CIM data models,
-  enable or tune data model acceleration, set earliest/backfill ranges, rebuild
-  an accelerated data model, audit CIM field compliance or model population, or
-  prepare Splunk_SA_CIM acceleration overrides for Enterprise Security and ITSI.
+description: "Manage CIM data models: datamodels.conf acceleration, enable/disable plans, earliest/backfill, rebuilds, tstats population and compliance audits, Splunk_SA_CIM overrides for ES/ITSI. Use when tuning or auditing CIM data model acceleration."
 ---
 
 # Splunk CIM Data-Model Management

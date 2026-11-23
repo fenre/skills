@@ -1,6 +1,6 @@
 ---
 name: splunk-cim
-description: "Splunk Common Information Model (CIM) reference for data normalization. Use when: (1) Mapping source data to CIM data models (Network Traffic, Authentication, Alerts, Change, Endpoint, Performance), (2) Creating props.conf field aliases and calculated fields for CIM compliance, (3) Configuring eventtypes.conf and tags.conf for data model routing, (4) Writing tstats queries against accelerated CIM data models, (5) Validating CIM compliance with SA-cim_vladiator, (6) Understanding CIM vs Operational Telemetry data model selection for OT/IoT use cases."
+description: "Splunk CIM normalization reference: mapping sources to data models, props.conf aliases and calculated fields, eventtypes and tags, tstats on accelerated models, CIM validation, CIM vs OT data model. Use when making data CIM-compliant."
 ---
 
 # Splunk Common Information Model (CIM) Reference

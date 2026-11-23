@@ -1,6 +1,6 @@
 ---
 name: splunk-oncall-setup
-description: Render, validate, and apply the full Splunk On-Call (formerly VictorOps) lifecycle — teams, users + contact methods, rotations, escalation policies, routing keys, scheduled overrides, personal paging policies, alert rules / Rules Engine, maintenance mode, incidents, notes, chat, stakeholder messages, REST endpoint and generic email alert payloads — plus Splunk-side companions (Splunkbase 3546 alert action, 4886 Add-on, 5863 SOAR connector, ITSI NEAP, ES Adaptive Response). Use when the user asks about Splunk On-Call, VictorOps, on-call schedules, escalation, paging, X-VO-Api-Id/X-VO-Api-Key, the alert.victorops.com REST endpoint, or victorops_app.
+description: "Splunk On-Call (VictorOps): teams, users, rotations, escalation policies, routing keys, overrides, rules engine, maintenance mode, incidents, REST alert payloads, Splunk-side alert action and add-ons. Use for on-call and paging setup."
 ---
 
 # Splunk On-Call Setup

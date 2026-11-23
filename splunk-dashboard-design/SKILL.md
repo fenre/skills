@@ -1,14 +1,6 @@
 ---
 name: splunk-dashboard-design
-description: >
-  Use this skill when the user wants guidance on making a Splunk dashboard look better, more
-  professional, or more intuitive. Triggers include: "make the dashboard look good", "improve
-  the layout", "what chart type should I use", "design a monitoring dashboard", "how do I
-  organise the panels", "make it visually appealing", choosing color palettes, structuring KPIs,
-  grouping panels visually, building an executive summary layout, operational monitoring layout,
-  or security investigation layout. Applies to BOTH Simple XML and Dashboard Studio dashboards.
-  Use alongside the technical skills (splunk-simple-xml or splunk-dashboards) to produce dashboards
-  that are both correct AND visually compelling.
+description: "Design guidance for Splunk dashboards (Simple XML and Dashboard Studio): layout, chart choice, KPIs, colors, panel grouping, executive/ops/security layouts. Use to make a dashboard clearer or better looking, alongside splunk-dashboards or splunk-simple-xml."
 ---
 
 # Splunk Dashboard Design Skill

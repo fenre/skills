@@ -1,6 +1,6 @@
 ---
-name: splunk-dashboard-studio
-description: Use this skill when the user wants to create, edit, or generate Splunk Dashboard Studio dashboards (JSON-based, version 2). Triggers include any mention of "Dashboard Studio", "Splunk dashboard", "splunk.pie", "splunk.table", "splunk.singlevalue", "splunk.timeline", "splunk.parallelcoordinates", or requests to build Splunk visualizations, security dashboards, monitoring dashboards, or SOC dashboards. Also use when converting Simple XML dashboards to Dashboard Studio format, or when generating dashboard JSON definitions programmatically. Do NOT use for Classic Simple XML dashboards (version 1), Splunk Observability Cloud dashboards, or AppDynamics dashboards.
+name: splunk-dashboards
+description: "Dashboard Studio (JSON, version 2) authoring reference: splunk.* visualization types and options, data sources, tokens, inputs, layout, drilldowns, converting Simple XML to Studio. Use when writing or editing Studio JSON by hand; not for Simple XML, Observability or AppDynamics dashboards."
 ---
 
 # Splunk Dashboard Studio — Skill Reference

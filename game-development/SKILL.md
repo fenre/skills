@@ -1,13 +1,6 @@
 ---
 name: game-development
-description: >
-  2D game development reference covering Phaser 3 (JavaScript/TypeScript) and Unity 2D (C#).
-  Engine-agnostic fundamentals: game loops, delta time, collision detection (AABB, circle, SAT),
-  physics, input handling, cameras, sprite animation, tilemaps, AI/pathfinding, particle systems,
-  audio, UI/HUD, and common 2D mechanics (platformer, top-down, projectiles). Includes game math
-  (vectors, lerp, easing, trig, Bezier, noise) and level design (Tiled editor, procedural generation,
-  save/load). Use when building any 2D game, creating game prototypes, implementing game mechanics,
-  or answering questions about Phaser, Unity 2D, or general game programming.
+description: "2D game development with Phaser 3 and Unity 2D: game loop, collision, physics, input, cameras, animation, tilemaps, AI/pathfinding, particles, audio, UI, game math, level design, save/load. Use when building or prototyping any 2D game."
 ---
 
 # 2D Game Development Reference

@@ -1,6 +1,6 @@
 ---
 name: splunk-lookups
-description: "Splunk Lookups reference for CSV file-based, KV Store, and automatic lookups. Use when: (1) Creating or configuring CSV lookup table files and transforms.conf definitions, (2) Setting up KV Store collections in collections.conf and KV Store lookup definitions in transforms.conf, (3) Configuring automatic lookups in props.conf with LOOKUP- directives, (4) Using lookup, inputlookup, and outputlookup SPL commands, (5) Troubleshooting lookup errors such as 'lookup table not found', missing fields, or auto-lookup failures, (6) Packaging apps with lookups for AppInspect and Splunk Cloud vetting."
+description: "Splunk lookups: CSV and KV Store lookups, transforms.conf and collections.conf, automatic lookups, lookup/inputlookup/outputlookup, 'lookup table not found' and similar errors, AppInspect packaging. Use when creating or fixing lookups."
 ---
 
 # Splunk Lookups Reference

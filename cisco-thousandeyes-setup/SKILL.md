@@ -1,12 +1,6 @@
 ---
 name: cisco-thousandeyes-setup
-description: >-
-  Automate Cisco ThousandEyes App for Splunk (ta_cisco_thousandeyes) setup and
-  configuration. Handles OAuth 2.0 device code authentication, HEC token
-  management, index creation, streaming and polling data inputs, and optional
-  ITSI integration. Use when the user asks about ThousandEyes, network
-  monitoring, path visualization, CEA tests, endpoint tests, or
-  ta_cisco_thousandeyes.
+description: "Set up the Cisco ThousandEyes App for Splunk (ta_cisco_thousandeyes): OAuth device-code login, HEC token, indexes, streaming and polling inputs, optional ITSI. Use for ThousandEyes data in Splunk Platform."
 ---
 
 # Cisco ThousandEyes App Setup Automation

@@ -1,11 +1,6 @@
 ---
 name: splunk-itsi-setup
-description: >-
-  Install and validate Splunk IT Service Intelligence (ITSI) on Splunk Cloud or
-  Splunk Enterprise. Handles installation from Splunkbase with local fallback,
-  validates core ITSI components, and checks integration readiness for apps
-  like Cisco ThousandEyes. Use when the user asks about ITSI, IT Service
-  Intelligence, AIOps, service monitoring, SA-ITOA, or event analytics.
+description: "Install and validate Splunk IT Service Intelligence (ITSI) on Cloud or Enterprise, with integration readiness checks. Use to install ITSI; for building services and KPIs use the synced splunk-itsi skill."
 ---
 
 # Splunk ITSI Setup Automation

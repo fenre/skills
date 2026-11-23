@@ -1,12 +1,6 @@
 ---
 name: splunk-universal-forwarder-setup
-description: >-
-  Bootstrap Splunk Universal Forwarder runtimes on Linux, macOS, and Windows,
-  resolve official UF downloads, render first-class enrollment assets for
-  deployment servers, static Enterprise indexers, or Splunk Cloud credentials
-  packages, and validate installed forwarders. Use when the user asks to
-  install, upgrade, enroll, or check Universal Forwarders separately from full
-  Splunk Enterprise host bootstrap or Agent Management server-class work.
+description: "Install, upgrade, enroll and check Splunk Universal Forwarders on Linux, macOS and Windows, with deployment server, indexer or Splunk Cloud credentials. Use for UF installation and enrollment."
 ---
 
 # Splunk Universal Forwarder Setup

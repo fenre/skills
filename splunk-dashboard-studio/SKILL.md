@@ -1,16 +1,6 @@
 ---
 name: splunk-dashboard-studio
-description: >-
-  Render, preflight, and validate Splunk Platform Dashboard Studio dashboards:
-  the version=2 JSON dashboard definition, the data/ui/views source XML wrapper,
-  panels for table/single-value/line/area/column/bar/pie/markdown visualizations,
-  data source searches, layout (grid or absolute), and a REST apply helper. Use
-  when the user asks to build or convert a Splunk Platform Dashboard Studio
-  dashboard, author a version 2 dashboard definition, create dashboards as code
-  for Splunk Enterprise or Splunk Cloud, generate dashboard JSON/XML from SPL
-  panels, or apply a dashboard via the data/ui/views REST endpoint. This is
-  Splunk Platform Dashboard Studio, NOT the Splunk Observability Cloud dashboard
-  builder.
+description: "Generate Dashboard Studio (version 2) definitions from simple panel specs (title, viz type, SPL), wrap them as data/ui/views XML and publish via REST. Use for dashboards-as-code or quickly creating/applying a Studio dashboard; for JSON options and viz details use splunk-dashboards."
 ---
 
 # Splunk Platform Dashboard Studio

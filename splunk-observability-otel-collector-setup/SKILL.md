@@ -1,6 +1,6 @@
 ---
 name: splunk-observability-otel-collector-setup
-description: Use when telemetry pipeline management needs Splunk OTel Collector pre-ingest filtering, attribute cleanup, receiver/exporter changes, or collector-side data control instead of native Metrics Pipeline Management rules; also use when deploying the Splunk Distribution of OpenTelemetry Collector for Splunk Observability Cloud to Kubernetes clusters, individual Linux hosts, or Universal Forwarder fleets through Splunkbase app 7125 with render-first, file-based-secret workflows.
+description: "Deploy and tune the Splunk Distribution of OpenTelemetry Collector on Kubernetes, Linux hosts or via UF (app 7125): receivers, exporters, filtering, attribute cleanup, file-based secrets. Use for OTel Collector setup or collector-side data control."
 ---
 
 # Splunk Observability OTel Collector Setup

@@ -1,11 +1,6 @@
 ---
 name: splunk-app-dev
-description: >
-  Use this skill when the user wants to create, scaffold, package, or troubleshoot a Splunk app
-  or add-on. Triggers include: building a Splunk app from scratch, setting up app directory
-  structure, writing app.conf / commands.conf / inputs.conf / restmap.conf, creating custom search
-  commands, modular inputs, alert actions, REST endpoints, packaging with SLIM or .spl,
-  passing AppInspect / Splunk Cloud vetting, or any question about dev.splunk.com best practices.
+description: "Build, package and troubleshoot Splunk apps and add-ons: directory layout, app.conf/inputs.conf/restmap.conf, custom search commands, modular inputs, alert actions, REST endpoints, SLIM packaging, AppInspect/Cloud vetting. Use for Splunk app development."
 ---
 
 # Splunk App Development Skill

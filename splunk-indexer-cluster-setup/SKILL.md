@@ -1,15 +1,6 @@
 ---
 name: splunk-indexer-cluster-setup
-description: >-
-  Render, preflight, apply, validate, and operate Splunk Enterprise indexer
-  clusters: single-site and multisite bootstrap, cluster manager redundancy,
-  bundle validate/apply/rollback, rolling restart modes, peer offline/removal,
-  maintenance mode, site migration, non-clustered indexer migration, and
-  indexer-discovery output snippets. Use when the user asks to bootstrap an
-  indexer cluster, configure site_replication_factor or site_search_factor,
-  apply or roll back a cluster bundle, perform searchable rolling restarts,
-  take a peer offline, migrate single-site to multisite, decommission a site,
-  or set up cluster manager redundancy.
+description: "Build and operate Splunk indexer clusters: single/multisite bootstrap, manager redundancy, bundle validate/apply/rollback, rolling restarts, maintenance mode, peer removal, site migration. Use for indexer cluster setup or operations."
 ---
 
 # Splunk Indexer Cluster Setup

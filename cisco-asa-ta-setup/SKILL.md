@@ -1,12 +1,6 @@
 ---
 name: cisco-asa-ta-setup
-description: >-
-  Render and validate a Splunk Add-on for Cisco ASA onboarding plan for
-  Splunk_TA_cisco-asa, Cisco ASA or FTD syslog, cisco:asa source typing, SC4S
-  or customer syslog receiver ownership, CIM Network_Traffic and
-  Intrusion_Detection readiness, and ES/firewall dashboard evidence. Use when
-  the user asks to onboard, configure, route, or validate Cisco ASA or FTD data
-  in Splunk.
+description: "Plan and validate Cisco ASA/FTD syslog onboarding with Splunk_TA_cisco-asa: cisco:asa sourcetypes, SC4S or syslog receiver, CIM Network_Traffic/Intrusion_Detection readiness. Use to onboard, route or validate ASA or FTD data in Splunk."
 ---
 
 # Cisco ASA TA Setup

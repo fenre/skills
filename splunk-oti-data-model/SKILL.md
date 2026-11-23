@@ -1,14 +1,6 @@
 ---
 name: splunk-oti-data-model
-description: >
-  Operational Telemetry (OT/IoT) data model configuration skill. Use this skill when:
-  (1) Normalizing industrial sensor data into the Operational_Telemetry data model — Metrics, Events,
-  States, Production, OEE, Quality, Maintenance, Security, Location objects;
-  (2) Writing props.conf field aliases and calculated fields for OT protocol data (Modbus, OPC-UA,
-  BACnet, MQTT, Meraki); (3) Configuring eventtypes.conf and tags.conf for OT data model routing;
-  (4) Mapping metric_name, metric_value, and metric_unit fields for universal sensor readings;
-  (5) Validating OT data model compliance with tstats queries;
-  (6) Understanding CIM vs Operational Telemetry data model selection for OT/IoT use cases.
+description: "Operational Telemetry data model for OT/IoT: Metrics, Events, States, OEE, Quality and other objects; props aliases for Modbus/OPC-UA/BACnet/MQTT/Meraki, eventtypes and tags, metric_name/value/unit, tstats checks. Use to normalize industrial sensor data."
 ---
 
 # Operational Telemetry Data Model - Splunk Configuration Skill

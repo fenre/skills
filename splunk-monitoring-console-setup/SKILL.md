@@ -1,11 +1,6 @@
 ---
 name: splunk-monitoring-console-setup
-description: >-
-  Render, preflight, apply, and validate Splunk Enterprise Monitoring Console
-  configuration. Use when the user asks to configure distributed or standalone
-  Monitoring Console mode, splunk_monitoring_console_assets.conf auto-config,
-  distsearch.conf search peer groups, forwarder monitoring, platform alerts,
-  search peer onboarding checks, or Monitoring Console status validation.
+description: "Configure and validate the Splunk Monitoring Console: distributed/standalone mode, search peer groups, forwarder monitoring, platform alerts. Use when setting up or fixing the Monitoring Console."
 ---
 
 # Splunk Monitoring Console Setup

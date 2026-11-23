@@ -1,11 +1,6 @@
 ---
 name: cisco-enterprise-networking-setup
-description: >-
-  Automate Cisco Enterprise Networking for Splunk Platform (cisco-catalyst-app)
-  setup. Configures index macros, sourcetype macros, saved searches, data model
-  acceleration, and validates dashboards. Use when the user asks about Cisco
-  Enterprise Networking app, cisco-catalyst-app, Catalyst dashboards, ISE
-  dashboards, SD-WAN dashboards, or Cyber Vision dashboards.
+description: "Set up the Cisco Enterprise Networking app (cisco-catalyst-app): index/sourcetype macros, saved searches, data model acceleration, dashboard checks for Catalyst Center, ISE, SD-WAN and Cyber Vision. Use when its dashboards are empty or need configuring."
 ---
 
 # Cisco Enterprise Networking App Setup Automation

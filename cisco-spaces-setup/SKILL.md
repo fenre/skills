@@ -1,12 +1,6 @@
 ---
 name: cisco-spaces-setup
-description: >-
-  Automate Cisco Spaces Add-on for Splunk (ta_cisco_spaces) setup and
-  configuration. Creates indexes, configures Cisco Spaces meta stream
-  accounts via REST API, enables firehose data inputs, stores activation
-  tokens securely, and validates the deployment. Use when the user asks
-  about Cisco Spaces, Spaces firehose, indoor location analytics,
-  ta_cisco_spaces, or Spaces setup in Splunk.
+description: "Set up the Cisco Spaces Add-on (ta_cisco_spaces): indexes, meta stream accounts, firehose inputs, activation tokens, validation. Use for Cisco Spaces or indoor location data in Splunk."
 ---
 
 # Cisco Spaces TA Setup Automation

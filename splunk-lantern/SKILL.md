@@ -1,14 +1,6 @@
 ---
 name: splunk-lantern
-description: >
-  Splunk Lantern best-practices reference, distilled from lantern.splunk.com. Use this skill when:
-  (1) Onboarding a new data source or sourcetype — props.conf Great 8, CIM compliance, data quality
-  validation; (2) Writing or optimising SPL — filtering, tstats, join alternatives, eval chaining,
-  summary indexing; (3) Implementing security use cases — Enterprise Security, RBA, MITRE ATT&CK,
-  assets & identities, SOAR playbooks; (4) Building observability solutions — ITSI KPI design, RED/
-  USE/LETS monitoring frameworks, SLO tracking; (5) Cloud data ingestion — AWS, Azure, Kubernetes,
-  Edge Processor pipelines; (6) Dashboard best practices — base/chain searches, drilldown, tokens;
-  (7) Platform governance — Splunk Success Framework, search head tuning, DMA optimisation.
+description: "Splunk Lantern best practices: data onboarding (Great 8, CIM), SPL optimization, security use cases (ES, RBA, MITRE), ITSI and SLO design, cloud ingest, dashboard patterns, platform governance. Use for 'what is the recommended way' questions in Splunk."
 ---
 
 # Splunk Lantern Best Practices Skill

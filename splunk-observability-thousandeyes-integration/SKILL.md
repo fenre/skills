@@ -1,19 +1,6 @@
 ---
 name: splunk-observability-thousandeyes-integration
-description: >-
-  Render and (optionally) apply the full ThousandEyes -> Splunk Observability
-  Cloud integration end-to-end: Integration 1.0 OpenTelemetry metric stream
-  (POST /v7/streams to ingest.<realm>.signalfx.com/v2/datapoint/otlp),
-  Integrations 2.0 Splunk Observability APM connector (generic connector +
-  splunk-observability-apm operation), and the full TE asset lifecycle
-  (tests, alert rules, labels, tags, TE-side dashboards, TE Templates with
-  Handlebars-only credential placeholders) across the canonical TE
-  OpenTelemetry Data Model v2 taxonomy. Generates SignalFlow dashboard specs
-  and starter detectors for hand-off to splunk-observability-dashboard-builder
-  and splunk-observability-native-ops. Use when the user asks to wire
-  ThousandEyes telemetry into Splunk Observability Cloud, configure
-  Integrations 2.0 APM trace linking, manage TE tests/alert rules/templates
-  for an O11y integration, or produce the per-test-type O11y dashboards.
+description: "Wire ThousandEyes into Splunk Observability Cloud: OTel metric streams, Integrations 2.0 APM connector, tests, alert rules, templates, O11y dashboards and detectors. Use to send ThousandEyes telemetry to Observability Cloud."
 ---
 
 # Splunk Observability ThousandEyes Integration

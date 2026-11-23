@@ -1,16 +1,6 @@
 ---
 name: splunk-ingest-processor-setup
-description: >-
-  Render Cisco Data Fabric ingest-time routing workflows and Splunk Cloud
-  Platform Ingest Processor setup plans with SPL2 pipelines, source types,
-  destinations, lifecycle handoffs, queue and monitoring searches, metrics,
-  OCSF, decrypt, S3 archive, custom pipeline templates, AI-powered data
-  management readiness, and downstream readiness checks. Use
-  when the user asks to configure Ingest Processor, author Ingest Processor
-  pipelines, route or transform data at ingest time, validate Ingest Processor
-  readiness, or compare Ingest Processor with Edge Processor and Data Manager,
-  including Cisco Data Fabric or telemetry pipeline management requests that
-  involve Splunk Cloud ingest-time routing and transformation.
+description: "Splunk Cloud Ingest Processor: SPL2 pipelines, sourcetypes, destinations, OCSF, S3 archive, monitoring, comparison with Edge Processor and Data Manager, Cisco Data Fabric ingest routing. Use to configure or validate Ingest Processor."
 ---
 
 # Splunk Ingest Processor Setup

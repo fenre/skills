@@ -1,15 +1,6 @@
 ---
 name: splunk-license-manager-setup
-description: >-
-  Render, preflight, apply, validate, and audit a Splunk Enterprise license
-  manager and its license peers, including license install, license group
-  activation (Enterprise, Forwarder, Free, Trial), license stacks, license
-  pools (with byte or MAX quota and per-peer slave lists), license peer
-  configuration via splunk edit licenser-localpeer, license messages and
-  violations, and license usage reporting. Use when the user asks about
-  configuring a Splunk Enterprise license manager, license master, license
-  peer, License-Master-URI, license slave, license pool, license group, or
-  license usage reporting.
+description: "Configure and audit a Splunk Enterprise license manager and peers: license install, groups, stacks, pools, peer configuration, violations, usage reporting. Use for Splunk licensing setup or license usage questions."
 ---
 
 # Splunk License Manager Setup

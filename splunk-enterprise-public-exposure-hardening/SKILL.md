@@ -1,17 +1,6 @@
 ---
 name: splunk-enterprise-public-exposure-hardening
-description: >-
-  Render, preflight, apply, and validate hardening of an on-prem Splunk
-  Enterprise deployment for public-internet exposure across all four edge
-  surfaces (Splunk Web on 8000, HEC on 8088, Splunk-to-Splunk on 9997,
-  splunkd REST on 8089) plus reference reverse-proxy / WAF / firewall
-  templates and a structured operator handoff. Use when the user asks to
-  expose Splunk Enterprise on the public internet, harden a Splunk search
-  head against internet exposure, configure TLS / HSTS / CSP / mTLS /
-  per-IP rate limit / DMZ heavy forwarder, lock down splunkd or the KV
-  store, fix splunk.secret / pass4SymmKey defaults, evaluate against the
-  latest SVD floor (10.4.0 / 10.2.2 / 10.0.5 / 9.4.10 / 9.3.11), or render nginx /
-  HAProxy / WAF reference configs in front of Splunk.
+description: "Harden on-prem Splunk Enterprise for internet exposure: Splunk Web, HEC, S2S, splunkd; TLS/HSTS/CSP/mTLS, rate limits, DMZ forwarder, splunk.secret and pass4SymmKey, SVD version floor, nginx/HAProxy/WAF templates. Use before exposing Splunk publicly."
 ---
 
 # Splunk Enterprise Public Internet Exposure Hardening

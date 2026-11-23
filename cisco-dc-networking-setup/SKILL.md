@@ -1,11 +1,6 @@
 ---
 name: cisco-dc-networking-setup
-description: >-
-  Automate Cisco DC Networking TA setup and configuration on Splunk. Creates
-  indexes, configures ACI/Nexus Dashboard/Nexus 9K accounts, enables data
-  inputs, stores credentials securely, and validates the deployment. Use when
-  the user asks about Cisco DC networking, ACI, APIC, Nexus Dashboard, Nexus
-  9K TA setup, Splunk TA automation, or cisco_dc_networking_app_for_splunk.
+description: "Set up the Cisco DC Networking TA (cisco_dc_networking_app_for_splunk): indexes, ACI/APIC, Nexus Dashboard and Nexus 9K accounts, inputs, validation. Use for data-center networking data in Splunk."
 ---
 
 # Cisco DC Networking TA Setup Automation

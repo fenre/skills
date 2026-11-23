@@ -1,18 +1,6 @@
 ---
 name: galileo-platform-setup
-description: >-
-  Render, validate, and optionally apply Galileo platform readiness, object
-  lifecycle, and Splunk wiring for Galileo SaaS or Enterprise deployments.
-  Covers Observe exports through export_records, project/log stream, dataset,
-  prompt, and experiment object lifecycle provisioning, OpenTelemetry/OpenInference
-  runtime snippets, Protect stages/invoke snippets, Evaluate metrics/annotation
-  handoffs, Luna Enterprise readiness, RBAC/project-sharing checks, Agent
-  Control target resolution, Splunk HEC/OTLP/OTel Collector handoffs, and
-  Splunk Observability dashboards/detectors. Use when the user asks to create
-  Galileo projects/log streams/datasets/prompts/experiments or connect Observe,
-  Evaluate, Protect, Luna, metrics, Agent Control targets, annotations,
-  feedback, or GenAI observability records to Splunk Platform or Splunk
-  Observability Cloud.
+description: "Galileo SaaS/Enterprise readiness and Splunk wiring: projects, log streams, datasets, prompts, experiments, Observe exports, Protect, Evaluate, Luna, RBAC, HEC/OTLP and Observability handoffs. Use to create Galileo objects or send Galileo GenAI records to Splunk."
 ---
 
 # Galileo Platform Setup

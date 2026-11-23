@@ -1,11 +1,6 @@
 ---
 name: splunk-enterprise-security-install
-description: >-
-  Install, post-install, and validate Splunk Enterprise Security (ES), including
-  SplunkEnterpriseSecuritySuite, essinstall, standalone search-head and SHC
-  deployer workflows, required ES framework apps, local splunk-ta packages, and
-  Splunkbase app 263 fallback. Use when the user asks to install, upgrade,
-  bootstrap, post-install, or validate Splunk Enterprise Security.
+description: "Install, upgrade and post-install Splunk Enterprise Security (SplunkEnterpriseSecuritySuite, essinstall) on a standalone search head or SHC deployer, with framework apps. Use to install or upgrade ES."
 ---
 
 # Splunk Enterprise Security Install

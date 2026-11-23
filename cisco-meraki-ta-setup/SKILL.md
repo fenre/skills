@@ -1,11 +1,6 @@
 ---
 name: cisco-meraki-ta-setup
-description: >-
-  Automate Cisco Meraki Add-on for Splunk (Splunk_TA_cisco_meraki) setup and
-  configuration. Creates indexes, configures Meraki organization accounts via
-  REST API, enables data inputs, stores credentials securely, and validates the
-  deployment. Use when the user asks about Cisco Meraki TA setup, Meraki
-  dashboard, Meraki API, or Splunk_TA_cisco_meraki.
+description: "Set up the Cisco Meraki Add-on for Splunk (Splunk_TA_cisco_meraki): indexes, organization accounts, inputs, validation. Use for getting Meraki data into Splunk; for direct Meraki API work use meraki-dashboard-api."
 ---
 
 # Cisco Meraki TA Setup Automation

@@ -1,12 +1,6 @@
 ---
 name: splunk-platform-restart-orchestrator
-description: >-
-  Plan, validate, audit, and safely execute Splunk Platform restarts and reloads
-  across Splunk Enterprise, Splunk Cloud, systemd-managed hosts, deployment
-  servers, indexer clusters, and search head clusters. Use when the user asks to
-  restart Splunk, avoid unnecessary restarts, recover from management API restart
-  trouble, review repo-wide restart handling, choose between REST/CLI/systemd/ACS
-  restart paths, or validate that a Splunk app/config change has been activated.
+description: "Plan and safely run Splunk restarts and reloads across Enterprise, Cloud, systemd hosts, deployment servers and clusters; choose REST/CLI/systemd/ACS. Use when a change needs activating or a restart must avoid downtime."
 ---
 
 # Splunk Platform Restart Orchestrator

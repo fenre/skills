@@ -1,12 +1,6 @@
 ---
 name: cisco-talos-intelligence-setup
-description: >-
-  Install and validate Cisco Talos Intelligence for Splunk Enterprise Security
-  Cloud. Covers ES Cloud support posture, Talos service account certificate
-  readiness, get_talos_enrichment capability, adaptive response actions,
-  optional collection index, and disabled IP blacklist threatlist checks. Use
-  when the user asks about Cisco Talos Intelligence, Talos reputation
-  enrichment, Splunk_TA_Talos_Intelligence, or Talos ES Cloud readiness.
+description: "Install and validate Cisco Talos Intelligence for Splunk Enterprise Security Cloud: service account certificate, get_talos_enrichment, adaptive response actions. Use for Talos reputation enrichment or Splunk_TA_Talos_Intelligence."
 ---
 
 # Cisco Talos Intelligence Setup

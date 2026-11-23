@@ -1,13 +1,6 @@
 ---
 name: splunk-ai-assistant-setup
-description: >-
-  Install, validate, and help complete Splunk AI Assistant for SPL
-  (`Splunk_AI_Assistant_Cloud`) setup on Splunk Cloud or Splunk Enterprise.
-  Handles Splunkbase installation with the shared app installer, checks
-  post-install health, and supports Enterprise cloud-connected onboarding,
-  activation, and proxy configuration. Use when the user asks about
-  splunk-ai-assistant, Splunk AI Assistant for SPL, AI Assistant for SPL, or
-  the `Splunk_AI_Assistant_Cloud` app.
+description: "Install and validate Splunk AI Assistant for SPL (Splunk_AI_Assistant_Cloud) on Cloud or Enterprise, including cloud-connected onboarding, activation and proxy. Use for AI Assistant for SPL setup or problems."
 ---
 
 # Splunk AI Assistant for SPL Setup

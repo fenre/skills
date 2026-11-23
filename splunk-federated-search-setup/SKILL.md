@@ -1,20 +1,6 @@
 ---
 name: splunk-federated-search-setup
-description: >-
-  Use when configuring Cisco Data Fabric federated search or standalone Splunk
-  Federated Search. Render, preflight, apply, and validate the full product
-  surface: Federated Search for Splunk (FSS2S, type=splunk) in standard or
-  transparent mode with multiple providers and federated indexes per render,
-  Federated Search for Amazon S3 legacy/reviewed provider payloads
-  (FSS3, type=aws_s3, Splunk Cloud Platform only), plus Data Management app
-  readiness handoffs for current Amazon S3, Microsoft Azure, and Azure
-  Databricks federation, file-based apply for Splunk
-  Enterprise standalone search heads or SHC deployers, REST-based apply that
-  works on Splunk Enterprise and Splunk Cloud, the global federated-search
-  enable/disable switch, and a status helper that reports per-provider
-  connectivityStatus. Use as the first route for Cisco Data Fabric requests
-  involving cross-domain search, federated analytics, S3 data-lake search, or
-  querying data where it resides.
+description: "Splunk Federated Search and Cisco Data Fabric federation: FSS2S (standard/transparent), S3 (FSS3), Azure/Databricks handoffs, providers and federated indexes, file or REST apply, status checks. Use for cross-deployment, S3 data-lake or 'search data where it lives' requests."
 ---
 
 # Splunk Federated Search Setup

@@ -1,11 +1,6 @@
 ---
 name: splunk-workload-management-setup
-description: >-
-  Render, preflight, apply, and validate Splunk Enterprise Workload Management
-  pools, workload rules, and admission rules. Use when the user asks to reserve
-  search or ingest resources, configure workload_pools.conf, workload_rules.conf,
-  workload_policy.conf, cgroups prerequisites, long-running search guardrails,
-  or admission control for expensive searches.
+description: "Configure Splunk Workload Management: pools, workload and admission rules, cgroups prerequisites, guardrails for long or expensive searches. Use to reserve resources or limit costly searches."
 ---
 
 # Splunk Workload Management Setup

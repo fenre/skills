@@ -1,16 +1,6 @@
 ---
 name: splunk-deployment-server-setup
-description: >-
-  Render, preflight, bootstrap, validate, and operate the Splunk Enterprise
-  Deployment Server runtime: enable-deploy-server bootstrap, deployment-app
-  layout checks, phoneHome tuning, REST inspection, large-fleet HA pairing,
-  client re-enrollment, staged rollout, Splunk 9.4.3+ filterType handling,
-  and failure-mode runbooks for 503 floods, app drift, and unenrolled clients.
-  Use when the user asks to bootstrap a deployment server, tune Universal
-  Forwarder phoneHome intervals, inspect enrolled clients, set up DS high
-  availability, migrate clients to a new DS, scale to 5000+ forwarders, or
-  diagnose DS runtime health. Hand off serverclass.conf and deploymentclient.conf
-  authoring to splunk-agent-management-setup.
+description: "Run and operate the Splunk Deployment Server: bootstrap, phoneHome tuning, client inspection, HA pairing, re-enrollment, staged rollout, large fleets, 503/drift runbooks. Use for DS runtime health; serverclass authoring is splunk-agent-management-setup."
 ---
 
 # Splunk Deployment Server Setup

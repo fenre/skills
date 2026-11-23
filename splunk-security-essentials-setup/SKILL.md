@@ -1,11 +1,6 @@
 ---
 name: splunk-security-essentials-setup
-description: >-
-  Install, configure readiness, and validate Splunk Security Essentials
-  (`Splunk_Security_Essentials`, Splunkbase app 3435) on Splunk Cloud or
-  Splunk Enterprise. Use when a user asks to set up SSE, Security Essentials,
-  MITRE/Kill Chain content exploration, Security Content recommendations, or
-  starter security posture dashboards.
+description: "Install and validate Splunk Security Essentials (app 3435) on Cloud or Enterprise: MITRE/Kill Chain content, recommendations, posture dashboards. Use to set up SSE."
 ---
 
 # Splunk Security Essentials Setup

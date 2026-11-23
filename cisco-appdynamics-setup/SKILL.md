@@ -1,12 +1,6 @@
 ---
 name: cisco-appdynamics-setup
-description: >-
-  Automate Cisco Splunk Add-on for AppDynamics (Splunk_TA_AppDynamics) setup and
-  configuration. Creates the AppDynamics index, sets add-on defaults, configures
-  controller and optional analytics connections, enables common input groups,
-  and validates the deployment. Use when the user asks about AppDynamics setup,
-  Splunk_TA_AppDynamics, controller connections, analytics connections, or
-  AppDynamics dashboards in Splunk.
+description: "Set up the Cisco Splunk Add-on for AppDynamics (Splunk_TA_AppDynamics): index, controller and analytics connections, input groups, validation. Use for AppDynamics data in Splunk or Splunk_TA_AppDynamics questions."
 ---
 
 # Cisco AppDynamics Setup Automation

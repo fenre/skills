@@ -1,13 +1,6 @@
 ---
 name: splunk-simple-xml
-description: >
-  Use this skill when the user wants to create, edit, or troubleshoot a Splunk Classic (Simple XML)
-  dashboard. Triggers include: building a Simple XML dashboard (.xml), adding rows/panels/charts/
-  tables/single-value panels, configuring inline or base searches, setting up inputs (time range,
-  dropdown, text, radio, multiselect, checkbox), using tokens, writing drilldown actions, configuring
-  panel options (charting.*), auto-refresh, fieldset, post-process searches, or saving dashboards
-  inside a Splunk app. Does NOT cover Dashboard Studio (JSON/version="2") — use splunk-dashboards
-  skill for that.
+description: "Splunk Classic (Simple XML) dashboards: rows and panels, base and post-process searches, inputs and tokens, drilldowns, charting options, refresh, saving in an app. Use for Simple XML; for Dashboard Studio use splunk-dashboards."
 ---
 
 # Splunk Simple XML (Classic Dashboards) Skill

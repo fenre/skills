@@ -1,12 +1,6 @@
 ---
 name: splunk-index-lifecycle-smartstore-setup
-description: >-
-  Render, preflight, apply, and validate Splunk index lifecycle and SmartStore
-  configuration. Use when the user asks to configure SmartStore remote volumes,
-  S3/GCS/Azure object storage for indexes, indexes.conf lifecycle settings,
-  maxGlobalDataSizeMB, maxGlobalRawDataSizeMB, frozenTimePeriodInSecs, cache
-  manager settings, limits.conf remote-storage localization settings,
-  cluster-manager bundle deployment, or standalone indexer SmartStore assets.
+description: "Configure index lifecycle and SmartStore: remote volumes on S3/GCS/Azure, indexes.conf size and retention (frozenTimePeriodInSecs, maxGlobalDataSizeMB), cache manager, cluster bundle deployment. Use for retention or SmartStore setup."
 ---
 
 # Splunk Index Lifecycle / SmartStore Setup

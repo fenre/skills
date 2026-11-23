@@ -1,14 +1,6 @@
 ---
 name: splunk-enterprise-security-config
-description: >-
-  Configure and validate Splunk Enterprise Security (ES) after installation,
-  including ES indexes, Splunk_TA_ForIndexers readiness, users and roles,
-  managed custom roles, CIM data models, data model acceleration, assets and
-  identities, threat intelligence, detections, risk-based alerting, Mission
-  Control, exposure analytics, UEBA, native SOAR integrations, ES AI Assistant
-  settings, Federated Analytics inventory/handoffs, and configuration health
-  checks. Use when the user asks to configure, tune, validate, or
-  operationalize Splunk Enterprise Security.
+description: "Configure and validate Splunk Enterprise Security after install: indexes, roles, CIM acceleration, assets and identities, threat intel, detections, RBA, Mission Control, UEBA, SOAR, AI Assistant, health checks. Use to tune or operationalize ES."
 ---
 
 # Splunk Enterprise Security Config
